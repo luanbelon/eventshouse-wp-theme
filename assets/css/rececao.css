@@ -1,0 +1,1019 @@
+/* ==========================================================================
+   A Ilha — Área da receção (login + painel)
+   ========================================================================== */
+
+:root {
+    --rec-accent: #0f766e;
+    --rec-accent-hover: #0d5f59;
+    --rec-accent-soft: rgba(15, 118, 110, 0.08);
+    --rec-surface: #ffffff;
+    --rec-bg: #f1f5f9;
+    --rec-bg-login: #0f172a;
+    --rec-text: #0f172a;
+    --rec-muted: #64748b;
+    --rec-border: #e2e8f0;
+    --rec-success: #059669;
+    --rec-danger: #dc2626;
+    --rec-shadow: 0 1px 3px rgba(15, 23, 42, 0.06);
+    --rec-shadow-lg: 0 25px 50px -12px rgba(15, 23, 42, 0.18);
+    --rec-font: "DM Sans", system-ui, -apple-system, sans-serif;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body.rececao-body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: var(--rec-font);
+    font-size: 15px;
+    line-height: 1.5;
+    color: var(--rec-text);
+    background: var(--rec-bg);
+    -webkit-font-smoothing: antialiased;
+}
+
+/* —— Login —— */
+.rececao-login-wrapper {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px 20px;
+    background: var(--rec-bg-login);
+    background-image:
+        radial-gradient(ellipse 120% 80% at 50% -20%, rgba(15, 118, 110, 0.35), transparent),
+        linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
+}
+
+.rececao-login-panel {
+    width: 100%;
+    max-width: 420px;
+}
+
+.rececao-login-card {
+    background: var(--rec-surface);
+    border-radius: 16px;
+    padding: 40px 36px 36px;
+    box-shadow: var(--rec-shadow-lg);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.rececao-login-brand {
+    text-align: center;
+    margin-bottom: 28px;
+}
+
+.rececao-login-logo-img,
+.rececao-sidebar-logo-img {
+    max-width: 200px;
+    max-height: 56px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.rececao-brand-wordmark {
+    display: inline-block;
+    font-size: 1.75rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--rec-accent);
+}
+
+.rececao-login-tagline {
+    margin: 12px 0 0;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--rec-muted);
+}
+
+.rececao-form {
+    margin-top: 8px;
+}
+
+.rececao-field {
+    margin-bottom: 18px;
+}
+
+.rececao-label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--rec-text);
+}
+
+.rececao-input {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid var(--rec-border);
+    border-radius: 10px;
+    font-family: inherit;
+    font-size: 1rem;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.rececao-input:hover {
+    border-color: #cbd5e1;
+}
+
+.rececao-input:focus {
+    outline: none;
+    border-color: var(--rec-accent);
+    box-shadow: 0 0 0 3px var(--rec-accent-soft);
+}
+
+.rececao-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: inherit;
+    font-weight: 600;
+    font-size: 0.9375rem;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.15s ease, transform 0.1s ease;
+}
+
+.rececao-btn--primary {
+    width: 100%;
+    margin-top: 8px;
+    padding: 14px 20px;
+    background: var(--rec-accent);
+    color: #fff;
+}
+
+.rececao-btn--primary:hover {
+    background: var(--rec-accent-hover);
+}
+
+.rececao-btn--primary:active {
+    transform: translateY(1px);
+}
+
+.rececao-btn--ghost {
+    padding: 10px 18px;
+    background: var(--rec-surface);
+    color: var(--rec-text);
+    border: 1px solid var(--rec-border);
+    box-shadow: var(--rec-shadow);
+}
+
+.rececao-btn--ghost:hover {
+    background: var(--rec-bg);
+}
+
+.rececao-alert {
+    padding: 12px 14px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    font-size: 0.875rem;
+    line-height: 1.45;
+}
+
+.rececao-alert--error {
+    background: #fef2f2;
+    color: #b91c1c;
+    border: 1px solid #fecaca;
+}
+
+.rececao-login-foot {
+    margin: 24px 0 0;
+    text-align: center;
+    font-size: 0.75rem;
+    color: rgba(248, 250, 252, 0.55);
+}
+
+.screen-reader-text {
+    border: 0;
+    clip: rect(1px, 1px, 1px, 1px);
+    clip-path: inset(50%);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+    word-wrap: normal !important;
+}
+
+/* —— Dashboard —— */
+.rececao-dashboard {
+    display: flex;
+    min-height: 100vh;
+    max-height: 100vh;
+}
+
+.rececao-sidebar {
+    width: 268px;
+    flex-shrink: 0;
+    background: var(--rec-surface);
+    border-right: 1px solid var(--rec-border);
+    display: flex;
+    flex-direction: column;
+    box-shadow: 4px 0 24px rgba(15, 23, 42, 0.04);
+}
+
+.rececao-sidebar-brand {
+    padding: 28px 22px 20px;
+    border-bottom: 1px solid var(--rec-border);
+}
+
+.rececao-sidebar-logo-link {
+    display: inline-block;
+    text-decoration: none;
+    line-height: 0;
+}
+
+.rececao-sidebar-logo-img {
+    max-width: 168px;
+    max-height: 44px;
+}
+
+.rececao-sidebar-badge {
+    display: block;
+    margin-top: 12px;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--rec-muted);
+}
+
+.rececao-nav {
+    flex: 1;
+    padding: 16px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.rececao-nav-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 14px;
+    border-radius: 10px;
+    color: var(--rec-text);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9375rem;
+    transition: background 0.12s ease, color 0.12s ease;
+}
+
+.rececao-nav-item:hover {
+    background: var(--rec-bg);
+    color: var(--rec-accent);
+}
+
+.rececao-nav-item.active {
+    background: var(--rec-accent-soft);
+    color: var(--rec-accent);
+}
+
+.rececao-nav-icon {
+    flex-shrink: 0;
+    opacity: 0.85;
+}
+
+.rececao-sidebar-foot {
+    padding: 16px 18px 20px;
+    border-top: 1px solid var(--rec-border);
+}
+
+.rececao-logout {
+    display: block;
+    text-align: center;
+    padding: 10px 12px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--rec-danger);
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background 0.12s ease;
+}
+
+.rececao-logout:hover {
+    background: #fef2f2;
+}
+
+.rececao-workspace {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    min-height: 0;
+}
+
+.rececao-topbar {
+    flex-shrink: 0;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 24px 32px 20px;
+    background: var(--rec-surface);
+    border-bottom: 1px solid var(--rec-border);
+}
+
+.rececao-greeting {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.25;
+    color: var(--rec-text);
+}
+
+.rececao-greeting-sub {
+    margin: 6px 0 0;
+    font-size: 0.875rem;
+    color: var(--rec-muted);
+    font-weight: 500;
+}
+
+.rececao-date {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--rec-muted);
+    white-space: nowrap;
+    padding-top: 4px;
+}
+
+.rececao-main {
+    flex: 1;
+    overflow-y: auto;
+    padding: 28px 32px 40px;
+}
+
+.rececao-tab {
+    display: none;
+    animation: rececaoFade 0.35s ease;
+}
+
+.rececao-tab.is-active {
+    display: block;
+}
+
+@keyframes rececaoFade {
+    from {
+        opacity: 0;
+        transform: translateY(6px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.rececao-section-head {
+    margin-bottom: 24px;
+}
+
+.rececao-section-head--row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.rececao-section-head h2 {
+    margin: 0 0 6px;
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+.rececao-section-desc {
+    margin: 0;
+    font-size: 0.9375rem;
+    color: var(--rec-muted);
+    max-width: 52ch;
+}
+
+/* Pesquisa */
+.rececao-search-wrap {
+    position: relative;
+    max-width: 560px;
+    margin-bottom: 28px;
+}
+
+.rececao-search-input {
+    width: 100%;
+    padding: 14px 18px;
+    font-size: 1rem;
+    border: 1px solid var(--rec-border);
+    border-radius: 12px;
+    background: var(--rec-surface);
+    box-shadow: var(--rec-shadow);
+    font-family: inherit;
+}
+
+.rececao-search-input:focus {
+    outline: none;
+    border-color: var(--rec-accent);
+    box-shadow: 0 0 0 3px var(--rec-accent-soft);
+}
+
+.rececao-search-results {
+    display: none;
+    position: absolute;
+    z-index: 20;
+    left: 0;
+    right: 0;
+    top: calc(100% + 8px);
+    margin: 0;
+    padding: 6px 0;
+    list-style: none;
+    background: var(--rec-surface);
+    border: 1px solid var(--rec-border);
+    border-radius: 12px;
+    box-shadow: var(--rec-shadow-lg);
+    max-height: 280px;
+    overflow-y: auto;
+}
+
+.rececao-search-results li {
+    padding: 12px 16px;
+    cursor: pointer;
+    border-bottom: 1px solid var(--rec-border);
+    transition: background 0.1s ease;
+}
+
+.rececao-search-results li:last-child {
+    border-bottom: none;
+}
+
+.rececao-search-results li:hover {
+    background: var(--rec-bg);
+}
+
+.rececao-search-results li strong {
+    display: block;
+    font-size: 0.9375rem;
+    margin-bottom: 2px;
+}
+
+.rececao-search-results li span {
+    font-size: 0.8125rem;
+    color: var(--rec-muted);
+}
+
+.rececao-search-empty {
+    color: var(--rec-muted) !important;
+    cursor: default !important;
+}
+
+.rececao-spinner {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--rec-border);
+    border-top-color: var(--rec-accent);
+    border-radius: 50%;
+    animation: rececaoSpin 0.7s linear infinite;
+}
+
+@keyframes rececaoSpin {
+    to {
+        transform: translateY(-50%) rotate(360deg);
+    }
+}
+
+/* Cartões cliente / passe */
+.rececao-client-panel {
+    margin-top: 8px;
+}
+
+.rececao-client-card {
+    background: var(--rec-surface);
+    padding: 20px 22px;
+    border-radius: 12px;
+    border: 1px solid var(--rec-border);
+    box-shadow: var(--rec-shadow);
+    margin-bottom: 16px;
+    border-left: 4px solid var(--rec-accent);
+}
+
+.rececao-client-card h3 {
+    margin: 0 0 4px;
+    font-size: 1.125rem;
+}
+
+.rececao-client-card p {
+    margin: 0;
+    font-size: 0.9375rem;
+    color: var(--rec-muted);
+}
+
+.rececao-pass-card {
+    background: var(--rec-surface);
+    padding: 28px 24px;
+    border-radius: 12px;
+    border: 1px solid var(--rec-border);
+    box-shadow: var(--rec-shadow);
+    text-align: center;
+}
+
+.rececao-loading {
+    margin: 0;
+    color: var(--rec-muted);
+}
+
+.pass-badge {
+    display: inline-block;
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    background: var(--rec-accent-soft);
+    color: var(--rec-accent);
+    margin-bottom: 16px;
+}
+
+.pass-stats {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 28px 40px;
+    margin: 20px 0 24px;
+}
+
+.stat-item {
+    text-align: center;
+}
+
+.stat-value {
+    display: block;
+    font-size: 2rem;
+    font-weight: 800;
+    line-height: 1.1;
+    color: var(--rec-text);
+}
+
+.stat-label {
+    display: block;
+    margin-top: 4px;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--rec-muted);
+}
+
+.btn-checkin {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 28px;
+    border: none;
+    border-radius: 10px;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    background: var(--rec-accent);
+    color: #fff;
+    transition: background 0.15s ease;
+}
+
+.btn-checkin:hover:not(:disabled) {
+    background: var(--rec-accent-hover);
+}
+
+.btn-checkin:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+.pass-empty {
+    padding: 32px 20px;
+    color: var(--rec-muted);
+    text-align: center;
+    border: 1px dashed var(--rec-border);
+    border-radius: 12px;
+    background: var(--rec-bg);
+}
+
+.rececao-checkin-msg {
+    margin-top: 16px;
+    font-size: 0.9375rem;
+    font-weight: 600;
+}
+
+.rececao-checkin-msg--ok {
+    color: var(--rec-success);
+}
+
+.rececao-checkin-msg--err {
+    color: var(--rec-danger);
+}
+
+/* Tabela */
+.rececao-table-wrap {
+    background: var(--rec-surface);
+    border-radius: 12px;
+    border: 1px solid var(--rec-border);
+    box-shadow: var(--rec-shadow);
+    overflow: hidden;
+}
+
+.rececao-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9375rem;
+}
+
+.rececao-table th {
+    text-align: left;
+    padding: 14px 20px;
+    font-weight: 600;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--rec-muted);
+    background: var(--rec-bg);
+    border-bottom: 1px solid var(--rec-border);
+}
+
+.rececao-table td {
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--rec-border);
+    vertical-align: middle;
+}
+
+.rececao-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.rececao-pill {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    background: var(--rec-bg);
+    color: var(--rec-text);
+}
+
+.rececao-table-loading,
+.rececao-table-empty {
+    text-align: center;
+    color: var(--rec-muted) !important;
+}
+
+.rececao-reservas-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.rececao-input--date {
+    max-width: 200px;
+}
+
+.rececao-reservas-summary {
+    margin-bottom: 20px;
+}
+
+.rececao-reservas-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px 24px;
+    align-items: center;
+    padding: 14px 18px;
+    background: var(--rec-accent-soft);
+    border: 1px solid rgba(15, 118, 110, 0.2);
+    border-radius: 10px;
+}
+
+.rececao-reservas-stats--full {
+    background: rgba(220, 38, 38, 0.06);
+    border-color: rgba(220, 38, 38, 0.25);
+}
+
+.rececao-reservas-count strong {
+    font-size: 1.25rem;
+    color: var(--rec-accent);
+}
+
+.rececao-reservas-stats--full .rececao-reservas-count strong {
+    color: var(--rec-danger);
+}
+
+.rececao-reservas-disp {
+    color: var(--rec-muted);
+    font-size: 0.9rem;
+}
+
+.rececao-reservas-date-label {
+    margin: 8px 0 0;
+    font-size: 0.875rem;
+    color: var(--rec-muted);
+}
+
+.rececao-reserva-banner {
+    margin-bottom: 16px;
+    padding: 12px 14px;
+    background: var(--rec-accent-soft);
+    border-left: 4px solid var(--rec-accent);
+    border-radius: 8px;
+    font-size: 0.9375rem;
+    color: var(--rec-text);
+}
+
+.rececao-extras-banner {
+    margin-bottom: 16px;
+    padding: 12px 14px;
+    background: #fff7ed;
+    border-left: 4px solid #ea580c;
+    border-radius: 8px;
+    font-size: 0.9375rem;
+    text-align: left;
+}
+
+.rececao-extras-banner__text {
+    margin: 6px 0 0;
+    font-size: 0.875rem;
+    color: var(--rec-muted);
+    line-height: 1.45;
+}
+
+.rececao-extras-checkin {
+    margin: 0 0 20px;
+    padding: 16px;
+    border: 1px solid #fed7aa;
+    border-radius: 10px;
+    background: #fffbeb;
+    text-align: left;
+}
+
+.rececao-extras-checkin__title {
+    margin: 0 0 12px;
+    font-size: 0.8125rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #9a3412;
+}
+
+.rececao-extras-field {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 12px;
+    margin-bottom: 10px;
+    font-size: 0.9375rem;
+}
+
+.rececao-extras-field:last-child {
+    margin-bottom: 0;
+}
+
+.rececao-extras-field input {
+    width: 56px;
+    padding: 6px 8px;
+    border: 1px solid var(--rec-border);
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: 1rem;
+}
+
+.rececao-extras-field__max {
+    font-size: 0.8125rem;
+    color: var(--rec-muted);
+}
+
+.rececao-meias-checkin {
+    margin-top: 1.25rem;
+    padding: 1rem 1.1rem;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--rec-border);
+    border-radius: 10px;
+}
+
+.rececao-meias-checkin__title {
+    margin: 0 0 0.35rem;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.rececao-meias-checkin__price {
+    margin: 0 0 0.85rem;
+    font-size: 0.85rem;
+    color: var(--rec-muted);
+}
+
+.rececao-meias-qty-field {
+    margin-bottom: 0.75rem;
+}
+
+.rececao-meias-qty-field input[type="number"] {
+    width: 56px;
+}
+
+.rececao-meias-phone-field {
+    flex-direction: column;
+    align-items: stretch;
+    margin-bottom: 0.75rem;
+}
+
+.rececao-modal .rececao-meias-phone-field input {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    padding: 10px 12px;
+    font-size: 1.0625rem;
+    letter-spacing: 0.02em;
+}
+
+.rececao-meias-payment {
+    margin-top: 0.5rem;
+    padding-top: 0.75rem;
+    border-top: 1px dashed var(--rec-border);
+}
+
+.rececao-meias-payment__label {
+    margin: 0 0 0.5rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--rec-muted);
+}
+
+.rececao-meias-pay-option {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.45rem;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.rececao-meias-pay-option input {
+    accent-color: var(--rec-accent);
+}
+
+/* Modal meias (check-in) */
+.rececao-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.25rem;
+}
+
+.rececao-modal[hidden] {
+    display: none !important;
+}
+
+.rececao-modal__backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.45);
+    backdrop-filter: blur(2px);
+}
+
+.rececao-modal__dialog {
+    position: relative;
+    width: min(100%, 420px);
+    max-height: calc(100vh - 2.5rem);
+    overflow-y: auto;
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 24px 48px rgba(15, 23, 42, 0.18);
+    animation: rececaoFade 0.25s ease;
+}
+
+.rececao-modal__body {
+    padding: 1.5rem 1.35rem 1.35rem;
+}
+
+.rececao-modal__title {
+    margin: 0 0 0.75rem;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--rec-text);
+}
+
+.rececao-modal__product {
+    margin: 0 0 0.65rem;
+    font-size: 0.95rem;
+    color: var(--rec-text);
+}
+
+.rececao-modal__desc {
+    margin: 0 0 0.75rem;
+    font-size: 0.9rem;
+    color: var(--rec-muted);
+    line-height: 1.5;
+}
+
+.rececao-modal__total {
+    margin: 0 0 0.5rem;
+    font-size: 0.95rem;
+}
+
+.rececao-modal__hint {
+    margin: 0 0 1rem;
+    font-size: 0.85rem;
+    color: var(--rec-muted);
+    line-height: 1.45;
+}
+
+.rececao-modal__error {
+    margin: 0 0 0.75rem;
+    padding: 0.65rem 0.75rem;
+    font-size: 0.875rem;
+    color: var(--rec-danger);
+    background: #fef2f2;
+    border-radius: 8px;
+}
+
+.rececao-modal__actions {
+    display: flex;
+    gap: 0.65rem;
+    flex-wrap: wrap;
+    margin-top: 1.1rem;
+}
+
+.rececao-modal__actions--stack {
+    flex-direction: column;
+}
+
+.rececao-modal__actions .rececao-btn {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.rececao-modal__actions--stack .rececao-btn {
+    width: 100%;
+}
+
+.rececao-pill--extras {
+    background: #ffedd5;
+    color: #9a3412;
+}
+
+.rececao-pill--confirmada {
+    background: #d1fae5;
+    color: #065f46;
+}
+
+.rececao-pill--presente {
+    background: #dbeafe;
+    color: #1e40af;
+}
+
+@media (max-width: 900px) {
+    .rececao-dashboard {
+        flex-direction: column;
+        max-height: none;
+    }
+
+    .rececao-sidebar {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid var(--rec-border);
+    }
+
+    .rececao-nav {
+        flex-direction: row;
+        flex-wrap: wrap;
+        padding: 12px;
+    }
+
+    .rececao-nav-item {
+        flex: 1;
+        min-width: 140px;
+        justify-content: center;
+    }
+
+    .rececao-topbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .rececao-main {
+        padding: 20px 18px 32px;
+    }
+}

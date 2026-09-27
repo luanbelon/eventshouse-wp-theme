@@ -1,0 +1,187 @@
+/* Produto tipo evento — formulário (classes próprias; evita conflito com .form-row global do tema) */
+
+.woo-single--event .eh-wc-event-fields {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    text-align: left;
+    margin: 0;
+}
+
+/* Grelha 2 colunas (nome criança + DOB; email + telefone) */
+.woo-single--event .eh-wc-event-form-row--2col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-md, 1rem);
+    margin-bottom: var(--space-md, 1rem);
+    width: 100%;
+    min-width: 0;
+}
+
+.woo-single--event .eh-wc-event-field {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+}
+
+.woo-single--event .eh-wc-event-field--full {
+    margin-bottom: var(--space-md, 1rem);
+}
+
+.woo-single--event .eh-wc-event-label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--color-text, #2d3436);
+}
+
+/* Todos os inputs da inscrição — largura total + box model */
+.woo-single--event .eh-wc-event-input,
+.woo-single--event .eh-wc-event-fields .input-text {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+    padding: 12px 14px !important;
+    font-family: var(--font-body, 'Poppins', sans-serif) !important;
+    font-size: 0.95rem !important;
+    color: var(--color-text, #2d3436) !important;
+    background: var(--color-white, #fff) !important;
+    border: 2px solid var(--color-border, #e0dcd5) !important;
+    border-radius: var(--radius-sm, 10px) !important;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.woo-single--event .eh-wc-event-input:focus,
+.woo-single--event .eh-wc-event-fields .input-text:focus {
+    outline: none !important;
+    border-color: var(--color-primary, #3ea6a8) !important;
+    box-shadow: 0 0 0 3px rgba(62, 166, 168, 0.15) !important;
+}
+
+.woo-single--event .eh-event-extra-block {
+    margin-bottom: var(--space-md, 1rem);
+    padding: var(--space-md, 1rem) var(--space-lg, 1.5rem);
+    background: var(--pastel-cream, #fbf8f5);
+    border: 1px solid var(--color-border, #e0dcd5);
+    border-radius: var(--radius-md, 18px);
+}
+
+.woo-single--event .eh-event-extra-block__label {
+    margin-bottom: 0.35rem;
+}
+
+.woo-single--event .eh-event-extra-block__hint {
+    margin: 0 0 var(--space-sm, 0.5rem);
+    font-size: 0.88rem;
+    color: var(--color-text-light, #636e72);
+}
+
+.woo-single--event .eh-event-extra-stepper {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.woo-single--event .eh-event-extra-stepper__value {
+    min-width: 2ch;
+    font-size: 1.25rem;
+    font-weight: 700;
+    text-align: center;
+}
+
+.woo-single--event .eh-event-extra-cards,
+.woo-single--event .eh-wc-event-extra-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: var(--space-md, 1rem);
+    margin-bottom: var(--space-md, 1rem);
+}
+
+.woo-single--event .eh-event-extra-card__head {
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+    color: #334155;
+}
+
+.woo-single--event .eh-event-extra-card__type {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 10px;
+}
+
+.woo-single--event .eh-event-extra-card__type label {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.woo-single--event .eh-event-extra-card__fields {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    width: 100%;
+    min-width: 0;
+}
+
+.woo-single--event .eh-event-extra-card__fields .form-group {
+    min-width: 0;
+}
+
+.woo-single--event .eh-event-extra-card__fields .input-text {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+.woo-single--event .eh-event-extra-card {
+    padding: 14px 16px;
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: var(--radius-sm, 10px);
+    box-shadow: var(--shadow-sm, 0 2px 8px rgba(0, 0, 0, 0.06));
+}
+
+.woo-single--event .eh-wc-event-consent {
+    padding: var(--space-md, 1rem);
+    background: var(--pastel-blue, #e3eff3);
+    border-radius: var(--radius-md, 18px);
+}
+
+.woo-single--event .eh-wc-event-consent__question {
+    margin-bottom: 0.35rem;
+}
+
+.woo-single--event .eh-wc-event-consent__hint {
+    display: block;
+    margin: 0 0 var(--space-sm, 0.5rem);
+    font-size: 0.85rem;
+    color: var(--color-text-light, #636e72);
+}
+
+.woo-single--event .eh-wc-event-consent label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-right: var(--space-md, 1rem);
+    margin-top: 0.35rem;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+@media (max-width: 540px) {
+    .woo-single--event .eh-wc-event-form-row--2col,
+    .woo-single--event .eh-event-extra-card__fields {
+        grid-template-columns: 1fr;
+    }
+}

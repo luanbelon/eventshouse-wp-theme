@@ -1,0 +1,18 @@
+.eh-event-admin-config .form-field input[type="number"],
+.eh-event-admin-config .form-field input[type="text"] {
+    max-width: 200px;
+}
+
+#eh-event-fields-builder .eh-field-row {
+    background: #f6f7f7;
+    border: 1px solid #dcdcde;
+    border-radius: 4px;
+    padding: 12px;
+    margin-bottom: 12px;
+}
+
+#eh-event-fields-builder .eh-field-row hr {
+    margin: 12px 0 0;
+    border: 0;
+    border-top: 1px solid #dcdcde;
+}

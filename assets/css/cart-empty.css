@@ -1,0 +1,116 @@
+/* Carrinho vazio — mensagem + grelha Manhãs / Verão / Festas (só com body.eh-cart-is-empty) */
+
+body.woocommerce-cart.eh-cart-is-empty .woocommerce-cart-form,
+body.woocommerce-cart.eh-cart-is-empty .cart-collaterals {
+    display: none !important;
+}
+
+/* Ocultar listagem «New in store» / produtos do WooCommerce */
+body.woocommerce-cart.eh-cart-is-empty .cart-empty.woocommerce-info,
+body.woocommerce-cart.eh-cart-is-empty .woocommerce-cart ul.products,
+body.woocommerce-cart.eh-cart-is-empty .woocommerce-cart .products,
+body.woocommerce-cart.eh-cart-is-empty .woocommerce-cart .cross-sells,
+body.woocommerce-cart.eh-cart-is-empty .wp-block-woocommerce-cart-cross-sells-block,
+body.woocommerce-cart.eh-cart-is-empty .return-to-shop {
+    display: none !important;
+}
+
+.eh-cart-empty {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: var(--space-xl, 2rem) 0 var(--space-3xl, 4rem);
+    text-align: center;
+}
+
+.eh-cart-empty__message {
+    margin: 0 0 var(--space-2xl, 3rem);
+    font-family: var(--font-heading, 'Poppins', sans-serif);
+    font-size: clamp(1.05rem, 2.5vw, 1.35rem);
+    font-weight: 500;
+    line-height: 1.55;
+    color: var(--color-text, #2d3436);
+}
+
+.eh-cart-empty__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-lg, 1.5rem);
+    text-align: left;
+}
+
+.eh-cart-empty__card {
+    display: flex;
+    flex-direction: column;
+    background: var(--color-white, #fff);
+    border-radius: var(--radius-lg, 30px);
+    overflow: hidden;
+    box-shadow: var(--shadow-md, 0 4px 16px rgba(0, 0, 0, 0.08));
+    text-decoration: none;
+    color: inherit;
+    transition: transform var(--transition-fast, 0.2s ease), box-shadow var(--transition-fast, 0.2s ease);
+}
+
+.eh-cart-empty__card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg, 0 8px 32px rgba(0, 0, 0, 0.12));
+}
+
+.eh-cart-empty__card-media {
+    display: block;
+    min-height: 160px;
+    background-color: var(--pastel-blue, #e3eff3);
+    background-size: cover;
+    background-position: center;
+}
+
+.eh-cart-empty__card-body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 0.5rem;
+    padding: var(--space-lg, 1.5rem);
+}
+
+.eh-cart-empty__card-title {
+    font-family: var(--font-heading, 'Poppins', sans-serif);
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--color-primary-dark, #2d898a);
+}
+
+.eh-cart-empty__card-text {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: var(--color-text-light, #636e72);
+    flex: 1;
+}
+
+.eh-cart-empty__card-cta {
+    display: inline-block;
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--color-secondary, #e8734a);
+}
+
+.eh-cart-empty__card:hover .eh-cart-empty__card-cta {
+    text-decoration: underline;
+}
+
+@media (max-width: 900px) {
+    .eh-cart-empty__grid {
+        grid-template-columns: 1fr;
+        max-width: 400px;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 600px) {
+    .eh-cart-empty {
+        padding-top: var(--space-lg, 1.5rem);
+    }
+
+    .eh-cart-empty__card-media {
+        min-height: 140px;
+    }
+}

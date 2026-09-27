@@ -1,0 +1,705 @@
+/* ═══════════════════════════════════════════════════
+   EventsHouse — Calendar CSS
+   ═══════════════════════════════════════════════════ */
+
+/* ── Wrapper ─────────────────────────────────────── */
+.eh-availability-section {
+    background: #fff9f4;
+    border-radius: 24px;
+    padding: 48px 40px;
+    margin-bottom: 48px;
+}
+
+.eh-availability-section h2 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #ff6600;
+    margin-bottom: 8px;
+}
+
+.eh-availability-section .section-intro {
+    color: #888;
+    margin-bottom: 32px;
+    font-size: 0.95rem;
+}
+
+/* ── Calendar Grid ───────────────────────────────── */
+.eh-calendar-wrap {
+    display: flex;
+    gap: 32px;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+.eh-calendar {
+    flex: 0 0 420px;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(255,102,0,0.10);
+    overflow: hidden;
+    user-select: none;
+    position: -webkit-sticky;
+    position: sticky;
+    top: calc(var(--header-height, 80px) + 60px);
+}
+
+/* ── Calendar Header ──────────────────────────── */
+.eh-cal-header {
+    background: var(--color-primary, #e8734a);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+}
+
+.eh-cal-header h3 {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+}
+
+.eh-cal-nav {
+    background: rgba(255,255,255,0.25);
+    border: none;
+    color: #fff;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+}
+
+.eh-cal-nav:hover {
+    background: rgba(255,255,255,0.40);
+}
+
+/* ── Day Names ───────────────────────────────────── */
+.eh-cal-days-header {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    background: #fff8f4;
+    padding: 8px 8px 0;
+}
+
+.eh-cal-days-header span {
+    text-align: center;
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: #aaa;
+    padding: 4px 0;
+}
+
+/* ── Calendar Days grid ──────────────────────────── */
+.eh-cal-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    padding: 8px;
+    gap: 4px;
+}
+
+.eh-cal-day {
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 0.8rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.18s;
+    position: relative;
+}
+
+.eh-cal-day.empty {
+    cursor: default;
+}
+
+.eh-cal-day.past {
+    color: #ddd;
+    cursor: not-allowed;
+}
+
+.eh-cal-day.occupied {
+    background: #ffe0e0;
+    color: #cc3300;
+    cursor: not-allowed;
+    text-decoration: line-through;
+}
+
+.eh-cal-day.occupied::after {
+    content: '';
+    position: absolute;
+    bottom: 3px;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: #cc3300;
+}
+
+.eh-cal-day.available {
+    cursor: pointer;
+    color: #333;
+}
+
+.eh-cal-day.available:hover {
+    background: #fff0e8;
+    color: #ff6600;
+}
+
+/* Manhãs na Ilha: dias com eventos ficam verdes */
+.eh-calendar-wrap[data-cal-context="ilha"] .eh-cal-day.has-event {
+    background: #e7f8ee;
+    color: #1e7f4f;
+    font-weight: 700;
+}
+.eh-calendar-wrap[data-cal-context="ilha"] .eh-cal-day.has-event:hover {
+    background: #d2f1df;
+    color: #16693f;
+}
+.eh-calendar-wrap[data-cal-context="ilha"] .eh-cal-day.no-event {
+    background: #f4f4f4;
+    color: #b9b9b9;
+    cursor: not-allowed;
+    text-decoration: none;
+}
+
+.eh-cal-day.selected {
+    background: #ff6600 !important;
+    color: #fff !important;
+    font-weight: 700;
+    box-shadow: 0 2px 8px rgba(255,102,0,0.4);
+}
+
+.eh-cal-day.today {
+    border: 2px solid #ff9933;
+    font-weight: 700;
+}
+
+/* ── Legend ──────────────────────────────────────── */
+.eh-cal-legend {
+    display: flex;
+    gap: 16px;
+    padding: 12px 16px;
+    border-top: 1px solid #f5f0ed;
+    background: #fffaf8;
+}
+
+.eh-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.75rem;
+    color: #888;
+}
+
+.eh-legend-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.eh-legend-dot.available-dot  { background: #ff9933; border: 2px solid #ff6600; }
+.eh-legend-dot.occupied-dot   { background: #ffe0e0; border: 2px solid #cc3300; }
+
+.eh-calendar-wrap[data-cal-context="ilha"] .eh-legend-dot.available-dot {
+    background: #e7f8ee;
+    border-color: #1e7f4f;
+}
+.eh-calendar-wrap[data-cal-context="ilha"] .eh-legend-dot.occupied-dot {
+    background: #f0f0f0;
+    border-color: #b6b6b6;
+}
+
+/* Loading state */
+.eh-cal-loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px;
+    text-align: center;
+    color: #aaa;
+    font-size: 0.9rem;
+}
+
+.eh-cal-loading .spin {
+    display: inline-block;
+    animation: spin 1s linear infinite;
+    margin-right: 8px;
+}
+
+.eh-slot-label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #555;
+    margin: 0 0 8px;
+}
+
+.eh-extras-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 8px;
+    padding: 12px;
+    background: #f9f9f9;
+    border-radius: 8px;
+    border: 1px solid #eee;
+}
+
+.eh-extra-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: normal;
+    cursor: pointer;
+    margin: 0;
+    font-size: 0.95rem;
+}
+
+.eh-extra-price {
+    color: #666;
+    font-weight: 800;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+}
+
+/* ── Booking Form (right side) ───────────────────── */
+.eh-booking-panel {
+    flex: 1;
+    min-width: 320px;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(255,102,0,0.10);
+    padding: 28px;
+    transition: all 0.3s;
+}
+
+.eh-booking-panel h3 {
+    color: #ff6600;
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+}
+
+.eh-booking-panel--ilha .eh-slot-picker {
+    grid-template-columns: 1fr;
+}
+.eh-booking-panel--ilha .eh-slot-btn.eh-event-btn {
+    text-align: left;
+    font-size: 0.9rem;
+    padding: 12px 14px;
+}
+.eh-booking-panel--ilha .eh-slot-btn.eh-event-btn.active {
+    background: var(--color-primary, #3ea6a8);
+    border-color: var(--color-primary, #3ea6a8);
+}
+.eh-event-detail {
+    margin-top: 14px;
+    border: 1px solid #e8f0f4;
+    border-radius: 12px;
+    background: #f9fcff;
+    padding: 14px;
+}
+.eh-event-detail-title {
+    margin: 0 0 6px;
+    font-size: 1rem;
+    color: #1f495c;
+}
+.eh-event-detail-time {
+    margin: 0 0 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #2f7b95;
+}
+.eh-event-detail-desc {
+    margin: 0 0 10px;
+    font-size: 0.9rem;
+    color: #51626d;
+    line-height: 1.45;
+    white-space: normal;
+}
+.eh-event-detail-desc p {
+    margin: 0 0 10px;
+    line-height: 1.55;
+}
+.eh-event-detail-desc p:last-child {
+    margin-bottom: 0;
+}
+.eh-event-detail-link {
+    color: var(--color-primary, #3ea6a8);
+    text-decoration: underline;
+    font-weight: 600;
+}
+.eh-ilha-reserve-toggle {
+    margin-top: 12px;
+    background: var(--color-primary, #3ea6a8);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 14px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    cursor: pointer;
+}
+.eh-ilha-reserve-toggle:hover {
+    opacity: 0.92;
+}
+.eh-ilha-reserve-area {
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px solid #d8e7ee;
+}
+.eh-ilha-email-intro {
+    margin: 0 0 14px;
+    font-size: 0.92rem;
+    color: #5a6a72;
+}
+.eh-ilha-no-pass-block {
+    text-align: center;
+}
+.eh-ilha-no-pass-msg {
+    margin: 0 0 16px;
+    font-size: 0.95rem;
+    color: #5a6a72;
+    line-height: 1.5;
+}
+.eh-ilha-packs-cta {
+    display: inline-block;
+    text-decoration: none;
+    margin-bottom: 10px;
+}
+.eh-ilha-packs-link-label {
+    margin: 0;
+    font-size: 0.88rem;
+}
+.eh-ilha-packs-link-label a {
+    color: var(--color-primary, #3ea6a8);
+    font-weight: 600;
+}
+.eh-ilha-reserve-form {
+    margin-top: 0;
+    padding-top: 0;
+    border-top: none;
+}
+.eh-ilha-no-events {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #9aa6ad;
+}
+
+.eh-selected-date-badge {
+    background: var(--color-primary, #e8734a);
+    color: #fff;
+    border-radius: 12px;
+    padding: 12px 18px;
+    margin-bottom: 20px;
+    font-weight: 600;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.eh-slot-picker {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.eh-slot-btn {
+    border: 2px solid #ffe0cc;
+    background: #fff;
+    color: #ff6600;
+    border-radius: 10px;
+    padding: 10px 12px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.18s;
+}
+
+.eh-slot-btn:hover,
+.eh-slot-btn.active {
+    background: #ff6600;
+    border-color: #ff6600;
+    color: #fff;
+}
+
+.eh-slot-btn.occupied {
+    border-color: #eee;
+    color: #ccc;
+    background: #f9f9f9;
+    cursor: not-allowed;
+    text-decoration: line-through;
+}
+
+.eh-slot-btn.is-blocked,
+.eh-slot-btn:disabled {
+    border-color: #e0dcd5;
+    color: #b2bec3;
+    background: #f4f4f4;
+    cursor: not-allowed;
+    opacity: 0.85;
+}
+
+.eh-slot-btn.is-blocked:hover {
+    background: #f4f4f4;
+    color: #b2bec3;
+    border-color: #e0dcd5;
+}
+
+/* Booking form fields */
+.eh-bform .form-group { margin-bottom: 14px; }
+.eh-bform label {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #555;
+    margin-bottom: 5px;
+}
+.eh-bform input:not([type="checkbox"]):not([type="radio"]):not([type="hidden"]),
+.eh-bform select,
+.eh-bform textarea {
+    width: 100%;
+    border: 1px solid #e8e0d8;
+    border-radius: 8px;
+    padding: 10px 12px;
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.2s;
+    box-sizing: border-box;
+}
+.eh-bform input[type="checkbox"],
+.eh-bform input[type="radio"] {
+    width: auto;
+    max-width: none;
+    flex-shrink: 0;
+    margin: 0;
+    accent-color: var(--color-primary, #e8734a);
+}
+
+/* Extras: distribuídos em 2 colunas (ex.: 4 + 3 itens), alinhados à esquerda */
+.eh-extras-list {
+    display: block;
+    column-count: 2;
+    column-gap: 20px;
+    align-items: stretch;
+    margin-top: 8px;
+    padding: 12px;
+    background: #f9f9f9;
+    border-radius: 8px;
+    border: 1px solid #eee;
+    text-align: left;
+}
+.eh-bform label.eh-extra-checkbox {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 8px;
+    font-weight: normal;
+    cursor: pointer;
+    margin: 0 0 8px;
+    text-align: left;
+    width: 100%;
+    box-sizing: border-box;
+    break-inside: avoid;
+    -webkit-column-break-inside: avoid;
+}
+
+.eh-extra-checkbox-text {
+    font-size: 0.95rem;
+    flex: 1;
+    min-width: 0;
+    text-align: left;
+}
+.eh-bform input:focus,
+.eh-bform select:focus,
+.eh-bform textarea:focus {
+    border-color: #ff6600;
+    box-shadow: 0 0 0 3px rgba(255,102,0,0.12);
+}
+.eh-bform textarea { resize: vertical; min-height: 80px; }
+.eh-bform .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.eh-submit-btn {
+    width: 100%;
+    background: var(--color-primary, #e8734a);
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    padding: 14px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.2s;
+    margin-top: 8px;
+}
+.eh-submit-btn:hover  { opacity: 0.9; transform: translateY(-1px); }
+.eh-submit-btn:active { transform: translateY(0); }
+.eh-submit-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+.eh-form-message {
+    border-radius: 10px;
+    padding: 12px 16px;
+    font-size: 0.9rem;
+    margin-bottom: 16px;
+    display: none;
+}
+.eh-booking-panel > .eh-form-message {
+    margin-bottom: 20px;
+}
+.eh-form-message.success {
+    background: #e8f5e9;
+    color: #2e7d32;
+    display: block;
+}
+.eh-form-message.error {
+    background: #ffebee;
+    color: #c62828;
+    display: block;
+}
+
+/* Not configured message */
+.eh-cal-not-configured {
+    background: #fff8e1;
+    border: 1px solid #ffe082;
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    color: #f57f17;
+    font-size: 0.9rem;
+}
+
+/* ── Upload: Cópia do CC ─────────────────────────── */
+.eh-upload-group .eh-field-hint {
+    display: block;
+    margin-top: 6px;
+    font-size: 0.78rem;
+    color: #999;
+    font-weight: 400;
+}
+.eh-bform input.eh-file-input {
+    padding: 9px 12px;
+    background: #fff;
+    cursor: pointer;
+}
+.eh-file-list {
+    margin-top: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+.eh-file-list:empty {
+    display: none;
+}
+.eh-file-list-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    font-size: 0.82rem;
+    color: #555;
+    background: #f9f9f9;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    padding: 6px 10px;
+}
+.eh-file-list-item.is-invalid {
+    background: #ffebee;
+    border-color: #ffcdd2;
+    color: #c62828;
+}
+.eh-file-list-item .eh-file-size {
+    color: #999;
+    flex-shrink: 0;
+}
+.eh-file-list-item.is-invalid .eh-file-size {
+    color: #c62828;
+}
+
+/* ── Grupos de escolha única (radio) ─────────────── */
+.eh-radio-group > label {
+    display: block;
+}
+.eh-radio-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 8px;
+    padding: 12px;
+    background: #f9f9f9;
+    border-radius: 8px;
+    border: 1px solid #eee;
+}
+.eh-radio-list--inline {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+.eh-bform label.eh-radio-option {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    font-weight: normal;
+    cursor: pointer;
+    margin: 0;
+    text-align: left;
+    width: 100%;
+}
+.eh-radio-list--inline .eh-bform label.eh-radio-option,
+.eh-radio-list--inline label.eh-radio-option {
+    width: auto;
+}
+.eh-radio-option span {
+    font-size: 0.95rem;
+    color: #444;
+}
+.eh-radio-option--other {
+    align-items: center;
+}
+.eh-bform input.eh-other-input {
+    flex: 1;
+    min-width: 140px;
+    width: auto !important;
+    padding: 6px 8px;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    border-radius: 0;
+    background: transparent;
+}
+.eh-bform input.eh-other-input:disabled {
+    color: #bbb;
+    border-bottom-style: dashed;
+}
+.eh-bform input.eh-other-input:focus {
+    box-shadow: none;
+    border-bottom-color: #ff6600;
+}
+.eh-nif-group .eh-radio-list--inline {
+    background: #f9f9f9;
+}
+
+/* ── Responsive ──────────────────────────────────── */
+@media (max-width: 680px) {
+    .eh-availability-section { padding: 24px 16px; }
+    .eh-calendar-wrap { flex-direction: column; }
+    .eh-calendar, .eh-booking-panel { flex: none; width: 100%; position: static; }
+    .eh-bform .form-row { grid-template-columns: 1fr; }
+    .eh-extras-list { column-count: 1; }
+}

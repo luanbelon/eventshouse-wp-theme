@@ -1,0 +1,221 @@
+/* Reservas Manhãs — wp-admin */
+
+.eh-reservas-sync-box {
+    flex: 1 1 280px;
+    min-width: 260px;
+    padding-top: 4px;
+    border-left: 1px solid #e2e8f0;
+    padding-left: 20px;
+}
+
+.eh-reservas-sync-box .description {
+    margin: 8px 0 0;
+    max-width: 420px;
+}
+
+.eh-sync-gcal-result {
+    margin-top: 12px;
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+}
+
+.eh-sync-gcal-result--loading {
+    background: #f1f5f9;
+    color: #475569;
+}
+
+.eh-sync-gcal-result--ok {
+    background: #d1fae5;
+    color: #065f46;
+}
+
+.eh-sync-gcal-result--err {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+.eh-reservas-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px 32px;
+    align-items: flex-end;
+    margin-bottom: 24px;
+    padding: 16px 20px;
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+}
+
+.eh-reservas-date-form,
+.eh-reservas-cap-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    margin: 0;
+}
+
+.eh-reservas-date-form label,
+.eh-reservas-cap-form label {
+    font-weight: 600;
+    color: #475569;
+}
+
+.eh-reservas-kpis {
+    margin-bottom: 20px;
+}
+
+.eh-dash-kpi--warn::before {
+    background: linear-gradient(90deg, #dc2626, #ea580c);
+}
+
+.eh-dash-kpi-of {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #64748b;
+}
+
+.eh-reservas-bar {
+    margin-top: 12px;
+}
+
+.eh-dash-panel {
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    padding: 20px 24px;
+    box-shadow: 0 1px 3px rgba(15, 23, 42, 0.06);
+}
+
+.eh-dash-panel h2 {
+    margin: 0 0 16px;
+    font-size: 1.1rem;
+}
+
+.eh-res-status {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.eh-res-status--confirmada {
+    background: #d1fae5;
+    color: #065f46;
+}
+
+.eh-res-status--presente {
+    background: #dbeafe;
+    color: #1e40af;
+}
+
+.eh-res-status--cancelada {
+    background: #f1f5f9;
+    color: #64748b;
+}
+
+.eh-reservas-tabs {
+    margin: 0 0 20px;
+}
+
+.eh-reservas-period-hint {
+    margin: 0;
+    flex: 1;
+    min-width: 220px;
+    color: #475569;
+    font-size: 0.95rem;
+}
+
+.eh-reservas-kpis--period {
+    margin-bottom: 24px;
+}
+
+.eh-reservas-days-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.eh-reservas-day-block {
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(15, 23, 42, 0.06);
+}
+
+.eh-reservas-day-block--today {
+    border-color: #14b8a6;
+    box-shadow: 0 0 0 1px rgba(20, 184, 166, 0.25);
+}
+
+.eh-reservas-day-block--full .eh-reservas-day-head {
+    background: linear-gradient(90deg, rgba(220, 38, 38, 0.06), transparent);
+}
+
+.eh-reservas-day-block--empty .eh-reservas-table-wrap {
+    opacity: 0.85;
+}
+
+.eh-reservas-day-head {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 20px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+    background: #f8fafc;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.eh-reservas-day-title-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+}
+
+.eh-reservas-day-title {
+    margin: 0;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+.eh-reservas-day-badge {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    background: #ccfbf1;
+    color: #0f766e;
+}
+
+.eh-reservas-day-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px 16px;
+    font-size: 0.9rem;
+    color: #64748b;
+}
+
+.eh-reservas-day-count strong {
+    font-size: 1.1rem;
+    color: #0f172a;
+}
+
+.eh-reservas-day-count.is-full strong {
+    color: #dc2626;
+}
+
+.eh-reservas-table--compact th,
+.eh-reservas-table--compact td {
+    padding: 10px 14px;
+    font-size: 0.875rem;
+}

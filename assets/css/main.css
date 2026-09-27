@@ -1,0 +1,5081 @@
+/* ============================================
+   EventsHouse - Main Stylesheet
+   Children's Event Space Theme
+   ============================================ */
+
+/* â”€â”€ CSS Variables / Design Tokens â”€â”€ */
+:root {
+    /* Primary Colors - Teal, Orange, Yellow */
+    --color-primary: #3ea6a8;
+    /* Teal as Primary */
+    --color-primary-light: #5dbabc;
+    --color-primary-dark: #2d898a;
+    --color-secondary: #e8734a;
+    /* Orange as Secondary */
+    --color-accent: #fcb935;
+    /* Yellow */
+    --color-accent-light: #fdd176;
+
+    /* Pastel Palette */
+    --pastel-green: #dcf2e6;
+    --pastel-brown: #d8c8bd;
+    --pastel-orange: #fce8d7;
+    --pastel-blue: #e3eff3;
+    --pastel-cream: #fbf8f5;
+    --pastel-red: #ffe8ea;
+
+    /* Neutral */
+    --color-white: #ffffff;
+    --color-bg: #fefcf8;
+    --color-bg-alt: #f8f5f0;
+    --color-text: #2d3436;
+    --color-text-light: #636e72;
+    --color-text-muted: #b2bec3;
+    --color-border: #e0dcd5;
+
+    /* Footer */
+    --footer-bg: #252742;
+    --footer-bg-light: #2c3e50;
+    --footer-text: #fbf8f5;
+
+    /* Shadows */
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
+    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
+    --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.12);
+    --shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.16);
+    --shadow-glow: 0 4px 20px rgba(246, 185, 130, 0.4);
+
+    /* Typography */
+    --font-heading: 'Poppins', sans-serif;
+    --font-body: 'Poppins', sans-serif;
+
+    /* Spacing */
+    --space-xs: 0.25rem;
+    --space-sm: 0.5rem;
+    --space-md: 1rem;
+    --space-lg: 1.5rem;
+    --space-xl: 2rem;
+    --space-2xl: 3rem;
+    --space-3xl: 4rem;
+    --space-4xl: 6rem;
+
+    /* Border Radius */
+    --radius-sm: 10px;
+    --radius-md: 18px;
+    --radius-lg: 30px;
+    --radius-xl: 40px;
+    --radius-full: 50%;
+
+    /* Transitions */
+    --transition-fast: 0.2s ease;
+    --transition-base: 0.3s ease;
+    --transition-slow: 0.5s ease;
+
+    /* Layout */
+    --header-height: 80px;
+    /* Espaço entre o bloco de título (.page-header) e o conteúdo logo a seguir (desktop) */
+    --page-content-after-header: 48px;
+    --container-max: 1200px;
+    --container-wide: 1400px;
+}
+
+/* â”€â”€ Reset & Base â”€â”€ */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body {
+    font-family: var(--font-body);
+    color: var(--color-text);
+    background-color: var(--color-bg);
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: color var(--transition-fast);
+}
+
+ul,
+ol {
+    list-style: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    line-height: 1.2;
+    color: var(--color-primary-dark);
+}
+
+h1 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+}
+
+h2 {
+    font-size: clamp(1.75rem, 4vw, 2.75rem);
+}
+
+h3 {
+    font-size: clamp(1.25rem, 3vw, 1.75rem);
+}
+
+h4 {
+    font-size: clamp(1.1rem, 2.5vw, 1.35rem);
+}
+
+/* Desktop: tamanhos uniformes de títulos */
+@media (min-width: 1024px) {
+    h1 {
+        font-size: 48px;
+    }
+
+    h2 {
+        font-size: 32px;
+    }
+}
+
+p {
+    margin-bottom: var(--space-md);
+    line-height: 1.7;
+}
+
+.container {
+    width: 100%;
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 0 var(--space-xl);
+}
+
+.container-wide {
+    max-width: var(--container-wide);
+}
+
+/* â”€â”€ Utility Classes â”€â”€ */
+.section {
+    padding: var(--space-4xl) 0;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: var(--space-lg);
+    position: relative;
+}
+
+.section-title h2 {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
+}
+
+.section-title h2 .emoji {
+    font-size: 1.2em;
+}
+
+.section-subtitle {
+    text-align: center;
+    color: var(--color-text-light);
+    max-width: 600px;
+    margin: 0 auto var(--space-3xl);
+    font-size: 1.05rem;
+}
+
+/* â”€â”€ Buttons â”€â”€ */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-sm);
+    padding: 0.75rem 1.75rem;
+    border-radius: var(--radius-xl);
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: all var(--transition-base);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    transition: left 0.5s;
+}
+
+.btn:hover::before {
+    left: 100%;
+}
+
+.btn-primary {
+    background: var(--color-primary);
+    color: var(--color-white);
+    box-shadow: var(--shadow-glow);
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(246, 185, 130, 0.5);
+}
+
+.btn-secondary {
+    background: var(--color-white);
+    color: var(--color-primary);
+    border-color: var(--color-primary);
+}
+
+.btn-secondary:hover {
+    background: var(--color-primary);
+    color: var(--color-white);
+    transform: translateY(-3px);
+}
+
+.btn-cta {
+    background: var(--color-secondary);
+    color: var(--color-bg-alt);
+    font-weight: 700;
+    padding: 0.65rem 1.7rem;
+    font-size: 0.95rem;
+    box-shadow: 0 4px 15px rgba(246, 185, 130, 0.4);
+}
+
+.btn-cta:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 8px 20px rgba(246, 185, 130, 0.5);
+}
+
+/* ============================================
+   HEADER
+   ============================================ */
+.site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: var(--header-height);
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    z-index: 1000;
+    box-shadow: var(--shadow-sm);
+    transition: all var(--transition-base);
+    overflow: visible;
+}
+
+.site-header.scrolled {
+    height: 65px;
+    box-shadow: var(--shadow-md);
+}
+
+.header-container {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    max-width: var(--container-wide);
+    margin: 0 auto;
+    padding: 0 var(--space-xl);
+}
+
+.header-logo {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    max-height: 100%;
+}
+
+.header-logo .logo-link {
+    display: flex;
+    align-items: center;
+    max-height: calc(var(--header-height) - 8px);
+}
+
+.header-logo img.custom-logo {
+    width: auto;
+    max-height: calc(var(--header-height) - 12px);
+    height: auto;
+    object-fit: contain;
+}
+
+.logo-text {
+    font-family: var(--font-heading);
+    font-size: 1.6rem;
+    font-weight: 700;
+}
+
+.logo-fradi {
+    color: var(--color-primary);
+}
+
+.logo-festas {
+    color: var(--color-secondary);
+    text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.08);
+}
+
+.nav-menu {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+}
+
+.nav-menu .menu-item a {
+    padding: 0.5rem 1rem;
+    font-weight: 500;
+    font-size: 0.95rem;
+    color: var(--color-text);
+    border-radius: var(--radius-md);
+    transition: all var(--transition-fast);
+    position: relative;
+}
+
+.nav-menu .menu-item a::after {
+    content: '';
+    position: absolute;
+    bottom: 2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 3px;
+    background: var(--color-primary-light);
+    border-radius: 2px;
+    transition: width var(--transition-base);
+}
+
+.nav-menu .menu-item a:hover::after,
+.nav-menu .menu-item.current-menu-item a::after {
+    width: 60%;
+}
+
+.nav-menu .menu-item a:hover {
+    color: var(--color-primary);
+}
+
+.nav-menu .menu-item.current-menu-item a {
+    color: var(--color-primary);
+    font-weight: 600;
+}
+
+.header-end {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    flex-shrink: 0;
+}
+
+.header-woo-icons {
+    display: flex;
+    align-items: center;
+    gap: 0.125rem;
+}
+
+.header-woo-icon {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-md);
+    color: var(--color-text);
+    transition: color var(--transition-fast), background var(--transition-fast);
+}
+
+.header-woo-icon:hover {
+    color: var(--color-primary);
+    background: rgba(82, 183, 136, 0.1);
+}
+
+.header-woo-icon svg {
+    flex-shrink: 0;
+}
+
+.header-woo-cart .header-cart-count {
+    position: absolute;
+    top: 2px;
+    right: 0;
+    min-width: 16px;
+    height: 16px;
+    padding: 0 4px;
+    font-size: 10px;
+    font-weight: 700;
+    line-height: 16px;
+    text-align: center;
+    color: #fff;
+    background: var(--color-secondary);
+    border-radius: 999px;
+    pointer-events: none;
+}
+
+.header-woo-cart .header-cart-count:empty {
+    display: none;
+}
+
+/* Mobile Menu Toggle */
+.mobile-menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    z-index: 10060;
+}
+
+.hamburger-line {
+    width: 26px;
+    height: 3px;
+    background: var(--color-primary-dark);
+    border-radius: 2px;
+    transition: all var(--transition-base);
+}
+
+.mobile-menu-toggle.active .hamburger-line:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 6px);
+}
+
+.mobile-menu-toggle.active .hamburger-line:nth-child(2) {
+    opacity: 0;
+}
+
+.mobile-menu-toggle.active .hamburger-line:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -6px);
+}
+
+/* Mobile Nav Overlay — começa abaixo do header fixo; fundo branco */
+.mobile-nav-overlay {
+    position: fixed;
+    top: var(--header-height);
+    left: 0;
+    right: 0;
+    bottom: 0;
+    min-height: calc(100vh - var(--header-height));
+    min-height: calc(100dvh - var(--header-height));
+    background: #fff;
+    z-index: 1;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity var(--transition-base), visibility var(--transition-base);
+    padding: var(--space-xl) var(--space-lg) calc(var(--space-2xl) + env(safe-area-inset-bottom, 0px));
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.mobile-nav-overlay .mobile-navigation {
+    width: 100%;
+    max-width: 28rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.mobile-nav-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.mobile-navigation {
+    text-align: center;
+}
+
+.mobile-nav-menu {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+}
+
+.mobile-nav-menu .menu-item a {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--color-text);
+    padding: var(--space-sm) var(--space-lg);
+    transition: color var(--transition-fast);
+}
+
+.mobile-nav-menu .menu-item a:hover {
+    color: var(--color-primary);
+}
+
+.mobile-cta {
+    margin-top: var(--space-xl);
+}
+
+/* ============================================
+   HERO BANNER
+   ============================================ */
+.hero-section {
+    position: relative;
+    min-height: 88vh;
+    display: flex;
+    align-items: center;
+    padding-top: var(--header-height);
+    overflow: hidden;
+    background: var(--color-bg-alt);
+}
+
+.hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+/* Decorative shapes */
+.hero-shape {
+    position: absolute;
+    border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+    opacity: 0.4;
+}
+
+.hero-shape-1 {
+    width: 350px;
+    height: 350px;
+    background: var(--pastel-brown);
+    top: -50px;
+    right: -80px;
+    animation: blobShape 8s ease-in-out infinite alternate;
+}
+
+.hero-shape-2 {
+    width: 280px;
+    height: 280px;
+    background: var(--pastel-blue);
+    bottom: 50px;
+    left: -50px;
+    animation: blobShape 10s ease-in-out infinite alternate-reverse;
+}
+
+.hero-shape-3 {
+    width: 180px;
+    height: 180px;
+    background: var(--pastel-green);
+    top: 30%;
+    right: 30%;
+    animation: blobShape 7s ease-in-out infinite alternate 1s;
+}
+
+@keyframes blobShape {
+    0% {
+        border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+        transform: rotate(0deg);
+    }
+
+    100% {
+        border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+        transform: rotate(10deg);
+    }
+}
+
+/* Floating balloons */
+.hero-balloons {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.balloon {
+    position: absolute;
+    font-size: 2rem;
+    animation: balloonFloat 12s ease-in-out infinite;
+    opacity: 0.6;
+}
+
+.balloon:nth-child(1) {
+    left: 5%;
+    animation-delay: 0s;
+    animation-duration: 14s;
+}
+
+.balloon:nth-child(2) {
+    left: 15%;
+    animation-delay: 2s;
+    animation-duration: 12s;
+}
+
+.balloon:nth-child(3) {
+    left: 30%;
+    animation-delay: 4s;
+    animation-duration: 16s;
+}
+
+.balloon:nth-child(4) {
+    left: 70%;
+    animation-delay: 1s;
+    animation-duration: 13s;
+}
+
+.balloon:nth-child(5) {
+    left: 85%;
+    animation-delay: 3s;
+    animation-duration: 15s;
+}
+
+.balloon:nth-child(6) {
+    left: 50%;
+    animation-delay: 5s;
+    animation-duration: 11s;
+}
+
+.balloon:nth-child(7) {
+    left: 92%;
+    animation-delay: 2.5s;
+    animation-duration: 14s;
+}
+
+/* Stars */
+.hero-stars {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.star {
+    position: absolute;
+    font-size: 1.2rem;
+    opacity: 0.4;
+    animation: twinkle 3s ease-in-out infinite;
+}
+
+.star:nth-child(1) {
+    top: 15%;
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.star:nth-child(2) {
+    top: 25%;
+    right: 15%;
+    animation-delay: 1s;
+}
+
+.star:nth-child(3) {
+    top: 60%;
+    left: 25%;
+    animation-delay: 2s;
+}
+
+.star:nth-child(4) {
+    top: 40%;
+    right: 30%;
+    animation-delay: 0.5s;
+}
+
+.star:nth-child(5) {
+    top: 75%;
+    right: 10%;
+    animation-delay: 1.5s;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 10;
+    max-width: 620px;
+    padding: var(--space-3xl) 0;
+}
+
+.hero-layout {
+    position: relative;
+    z-index: 10;
+}
+
+.hero-section.mode-slide .hero-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(320px, 560px);
+    align-items: center;
+    gap: clamp(8px, 2vw, 24px);
+}
+
+.hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    padding: 0.4rem 1rem;
+    border-radius: var(--radius-xl);
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    margin-bottom: var(--space-lg);
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+.hero-title {
+    font-family: var(--font-heading);
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
+    font-weight: 700;
+    color: var(--color-primary-dark);
+    line-height: 1.15;
+    margin-bottom: var(--space-lg);
+    animation: fadeInUp 0.6s ease 0.2s forwards;
+    opacity: 0;
+}
+
+.hero-title .highlight {
+    color: var(--color-secondary);
+    position: relative;
+}
+
+.hero-subtitle {
+    font-size: 1.1rem;
+    color: var(--color-text-light);
+    margin-bottom: var(--space-2xl);
+    animation: fadeInUp 0.6s ease 0.4s forwards;
+    opacity: 0;
+    max-width: 500px;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: var(--space-md);
+    flex-wrap: wrap;
+    animation: fadeInUp 0.6s ease 0.6s forwards;
+    opacity: 0;
+}
+
+/* Hero Slider */
+.hero-slider {
+    position: relative;
+    width: 100%;
+    height: clamp(420px, 40vw, 620px);
+    z-index: 5;
+    justify-self: start;
+    margin-left: 20px;
+}
+
+.hero-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: none;
+    width: 100%;
+    height: 100%;
+    border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+    overflow: hidden;
+    opacity: 0;
+    transition: opacity 0.8s ease, border-radius 8s ease-in-out;
+    box-shadow: var(--shadow-xl);
+    animation: bannerBubble 12s ease-in-out infinite alternate;
+    border: 10px solid var(--color-white);
+}
+
+@keyframes bannerBubble {
+    0% {
+        border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+    }
+
+    50% {
+        border-radius: 30% 70% 40% 60% / 50% 40% 60% 50%;
+    }
+
+    100% {
+        border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    }
+}
+
+.hero-slide.active {
+    opacity: 1;
+}
+
+.hero-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.hero-slider-dots {
+    position: absolute;
+    bottom: 18px;
+    right: 18px;
+    display: flex;
+    gap: var(--space-sm);
+    z-index: 6;
+}
+
+.slider-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: var(--radius-full);
+    background: rgba(255, 255, 255, 0.5);
+    border: 2px solid var(--color-white);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.slider-dot.active {
+    background: var(--color-secondary);
+    transform: scale(1.2);
+}
+
+/* Modo bolhas: slider rectangular só no telemóvel (HTML duplicado em front-page) */
+@media (min-width: 769px) {
+    .hero-slider--bubbles-mobile {
+        display: none !important;
+    }
+}
+
+/* Bubbles mode */
+.hero-section.mode-bubbles .hero-bubble {
+    position: absolute;
+    border-radius: var(--radius-full);
+    animation: bubbleFloat linear infinite;
+    z-index: 3;
+}
+
+.hero-bubble {
+    opacity: 0;
+}
+
+/* ============================================
+   3 STEPS SECTION
+   ============================================ */
+.steps-section {
+    padding: var(--space-4xl) 0;
+    background: var(--color-white);
+    position: relative;
+}
+
+.steps-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background: var(--color-accent);
+}
+
+.steps-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-2xl);
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.step-card {
+    text-align: center;
+    padding: 24px;
+    border-radius: var(--radius-lg);
+    transition: all var(--transition-base);
+    position: relative;
+}
+
+.step-card:hover {
+    transform: translateY(-5px);
+}
+
+.step-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 55px;
+    height: 55px;
+    border-radius: var(--radius-lg);
+    background: var(--color-primary);
+    color: var(--color-white);
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: 1.3rem;
+    margin-bottom: var(--space-md);
+    box-shadow: 0 4px 15px rgba(119, 191, 163, 0.4);
+}
+
+.step-icon {
+    font-size: 3rem;
+    margin-bottom: var(--space-md);
+    display: block;
+}
+
+.step-card h3 {
+    margin-bottom: var(--space-sm);
+    font-size: 1.1rem;
+}
+
+.step-card p {
+    color: var(--color-text-light);
+    font-size: 0.9rem;
+    margin-bottom: 0;
+}
+
+/* Connection lines between steps */
+.step-card:not(:last-child)::after {
+    display: none !important;
+    content: none !important;
+    width: 0 !important;
+    height: 0 !important;
+    opacity: 0 !important;
+    font-size: 0 !important;
+    border: 0 !important;
+}
+
+.passes-home-section {
+    margin: 2rem 0;
+}
+
+/* ============================================
+   GALLERY SECTION
+   ============================================ */
+.gallery-section {
+    padding: var(--space-4xl) 0;
+    background: var(--color-bg-alt);
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 250px);
+    gap: var(--space-md);
+}
+
+.gallery-item {
+    position: relative;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: var(--shadow-sm);
+    transition: all var(--transition-base);
+}
+
+.gallery-item:hover {
+    transform: scale(1.03);
+    box-shadow: var(--shadow-lg);
+    z-index: 2;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-slow);
+}
+
+.gallery-item:hover img {
+    transform: scale(1.1);
+}
+
+.gallery-item .gallery-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to top, rgba(62, 166, 168, 0.8), transparent);
+    opacity: 0;
+    transition: opacity var(--transition-base);
+    display: flex;
+    align-items: flex-end;
+    padding: var(--space-md);
+}
+
+.gallery-item:hover .gallery-overlay {
+    opacity: 1;
+}
+
+.gallery-overlay span {
+    color: var(--color-white);
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+/* Make first and last items larger */
+.gallery-item:nth-child(1) {
+    grid-column: span 2;
+}
+
+.gallery-item:nth-child(6) {
+    grid-column: span 2;
+}
+
+/* ============================================
+   ILHA PASSES HOME PROMO SECTION
+   ============================================ */
+.passes-home-section {
+    padding: var(--space-5xl) 0;
+}
+
+.passes-home-card {
+    max-width: 1140px;
+    margin: 0 auto;
+    background: var(--color-bg-alt);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    box-shadow: var(--shadow-sm);
+    direction: ltr;
+    position: relative;
+    border: solid 1px #00000057 !important;
+}
+
+.passes-home-card::after {
+    content: none;
+    display: none;
+}
+
+.passes-home-media {
+    grid-column: 1;
+    position: relative;
+    z-index: 1;
+}
+
+.passes-home-media img {
+    width: 100%;
+    height: 100%;
+    min-height: 480px;
+    object-fit: cover;
+    display: block;
+    border-radius: 0;
+}
+
+.passes-home-content {
+    grid-column: 2;
+    padding: var(--space-2xl);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: var(--space-md);
+    position: relative;
+    z-index: 1;
+}
+
+.passes-home-tag {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    align-self: flex-start;
+    font-weight: 700;
+    color: var(--color-primary);
+    font-size: 0.95rem;
+    background: rgba(255, 255, 255, 0.85);
+    padding: 0.4rem 1.2rem;
+    border-radius: var(--radius-xl);
+}
+
+.passes-home-title {
+    font-size: clamp(1.8rem, 3vw, 2.4rem);
+    color: var(--color-primary-dark);
+    margin: 0;
+    font-weight: 700;
+}
+
+.passes-home-desc,
+.passes-home-foot {
+    color: var(--color-text-light);
+    line-height: 1.7;
+    margin: 0;
+    font-size: 1.05rem;
+}
+
+.passes-home-list {
+    margin: var(--space-sm) 0;
+    padding-left: 0;
+    color: var(--color-text);
+    line-height: 1.8;
+    list-style: none;
+    font-weight: 500;
+    font-size: 1.05rem;
+}
+
+.passes-home-list li {
+    position: relative;
+    padding-left: 40px;
+    margin-bottom: 0.8rem;
+}
+
+.passes-home-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 4px;
+    width: 24px;
+    height: 24px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2370b386' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'%3E%3C/polyline%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.passes-home-cta {
+    margin-top: var(--space-md);
+    width: fit-content;
+    padding: 0.8rem 2rem;
+}
+
+@media (max-width: 900px) {
+    .passes-home-card {
+        grid-template-columns: 1fr;
+        border-radius: var(--radius-lg);
+    }
+
+    .passes-home-card::after {
+        display: none;
+    }
+
+    .passes-home-media img {
+        border-radius: 0;
+        min-height: 300px;
+    }
+
+    .passes-home-content {
+        padding: var(--space-2xl);
+    }
+}
+
+/* Festas na Ilha Specific Styles */
+.festas-home-section {
+    padding-bottom: var(--space-2xl);
+    /* Some separation before the next promo */
+}
+
+.festas-home-section .passes-home-card {
+    background: #fdfaf5;
+    /* Slightly warmer background */
+    border: 1px solid #f2ece4;
+}
+
+.tag-weekend {
+    background: var(--pastel-orange) !important;
+    color: var(--color-secondary) !important;
+}
+
+.btn-orange {
+    background: var(--color-secondary) !important;
+    color: var(--color-white) !important;
+    border: none;
+}
+
+.btn-orange:hover {
+    background: #d65d36 !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(232, 115, 74, 0.3);
+}
+
+.checklist li::before {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232d8a6a' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'%3E%3C/polyline%3E%3C/svg%3E") !important;
+}
+
+.festas-home-section .passes-home-title {
+    color: var(--color-primary-dark);
+}
+
+.festas-home-section .passes-home-desc strong {
+    color: var(--color-primary);
+}
+
+/* ============================================
+   SERVICES / WHAT WE OFFER SECTION
+   ============================================ */
+.services-section {
+    padding: var(--space-4xl) 0;
+    background: var(--color-white);
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: var(--space-lg);
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.service-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: var(--space-lg);
+    border-radius: var(--radius-md);
+    background: var(--color-bg);
+    transition: all var(--transition-base);
+    border: 2px solid transparent;
+}
+
+.service-item:hover {
+    border-color: var(--pastel-green);
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-md);
+    background: var(--color-white);
+}
+
+.service-icon {
+    width: 65px;
+    height: 65px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-full);
+    background: var(--pastel-blue);
+    font-size: 1.6rem;
+    color: var(--color-primary);
+    margin-bottom: var(--space-md);
+    transition: transform var(--transition-base), background var(--transition-base);
+}
+
+.service-item:hover .service-icon {
+    transform: scale(1.15) rotate(10deg);
+    background: var(--pastel-orange);
+}
+
+.service-name {
+    font-family: var(--font-heading);
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--color-text);
+}
+
+/* ============================================
+   WHY US / BENEFITS SECTION
+   ============================================ */
+.benefits-section {
+    padding: var(--space-4xl) 0;
+    background: var(--color-bg-alt);
+}
+
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-2xl);
+}
+
+.benefit-card {
+    text-align: center;
+    padding: var(--space-2xl);
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    transition: all var(--transition-base);
+}
+
+.benefit-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-lg);
+    background: var(--color-white);
+}
+
+.benefit-icon {
+    font-size: 3rem;
+    margin-bottom: var(--space-md);
+    display: block;
+}
+
+.benefit-card h3 {
+    margin-bottom: var(--space-sm);
+}
+
+.benefit-card p {
+    color: var(--color-text-light);
+    font-size: 0.95rem;
+}
+
+/* ============================================
+   TESTIMONIALS SECTION
+   ============================================ */
+.testimonials-section {
+    padding: var(--space-4xl) 0;
+    background: var(--color-bg-alt);
+    position: relative;
+    overflow: hidden;
+}
+
+.testimonials-section::before {
+    content: none !important;
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    font-size: 3rem;
+    opacity: 0.1;
+}
+
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-xl);
+}
+
+.testimonial-card {
+    background: var(--color-white);
+    padding: var(--space-2xl);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    transition: all var(--transition-base);
+    position: relative;
+}
+
+.testimonial-card::before {
+    content: '"';
+    font-family: Georgia, serif;
+    font-size: 5rem;
+    color: var(--pastel-blue);
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    line-height: 1;
+}
+
+.testimonial-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+}
+
+.testimonial-stars {
+    display: flex;
+    gap: 2px;
+    margin-bottom: var(--space-md);
+    color: #ffc107;
+    font-size: 1.1rem;
+}
+
+.testimonial-text {
+    font-size: 0.95rem;
+    color: var(--color-text-light);
+    line-height: 1.7;
+    margin-bottom: var(--space-lg);
+    font-style: italic;
+    padding-left: var(--space-lg);
+}
+
+.testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+}
+
+.testimonial-avatar {
+    width: 55px;
+    height: 55px;
+    border-radius: var(--radius-lg);
+    background: var(--color-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--color-white);
+    border: 3px solid var(--color-white);
+    box-shadow: var(--shadow-sm);
+}
+
+.testimonial-name {
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.testimonial-role {
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+}
+
+/* ============================================
+   PRICING SECTION
+   ============================================ */
+.pricing-section {
+    padding: var(--space-4xl) 0;
+    background: var(--color-white);
+}
+
+.pricing-tabs {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-3xl);
+    flex-wrap: wrap;
+}
+
+.pricing-tab {
+    padding: 0.6rem 1.5rem;
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    background: var(--color-white);
+    cursor: pointer;
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: all var(--transition-base);
+    color: var(--color-text);
+}
+
+.pricing-tab.active,
+.pricing-tab:hover {
+    border-color: var(--color-primary);
+    background: var(--color-primary);
+    color: var(--color-white);
+}
+
+.pricing-content {
+    display: none;
+    animation: fadeIn 0.4s ease;
+}
+
+.pricing-content.active {
+    display: block;
+}
+
+.pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-xl);
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.pricing-card {
+    max-width: 700px;
+    margin: 0 auto;
+    background: var(--color-bg);
+    border-radius: var(--radius-lg);
+    padding: var(--space-3xl);
+    text-align: center;
+    box-shadow: var(--shadow-md);
+}
+
+.pricing-schedule {
+    margin: var(--space-xl) 0;
+}
+
+.schedule-item {
+    padding: 0.75rem var(--space-xl);
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    margin-bottom: var(--space-sm);
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-md);
+    background: var(--color-white);
+    transition: all var(--transition-fast);
+}
+
+.schedule-item:hover {
+    border-color: var(--color-primary-light);
+}
+
+.pricing-value {
+    font-family: var(--font-heading);
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    margin: var(--space-xl) 0;
+}
+
+.pricing-value .currency {
+    font-size: 1.5rem;
+}
+
+/* Horizontal Extras Layout */
+.extras-grid {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2xl);
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.extra-item-horizontal {
+    display: flex;
+    flex-direction: row;
+    background: var(--color-bg);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+    align-items: stretch;
+}
+
+.extra-image {
+    flex: 0 0 45%;
+    position: relative;
+    background: #f0f0f0;
+    min-height: 250px;
+}
+
+.extra-image img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.extra-content {
+    flex: 1;
+    padding: var(--space-3xl);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+}
+
+.extra-content h2 {
+    color: var(--color-primary);
+    font-size: clamp(1.8rem, 3vw, 2.4rem);
+    margin-bottom: var(--space-xs);
+}
+
+.extra-content .pricing-time {
+    font-weight: 600;
+    color: var(--color-primary);
+    margin-bottom: var(--space-md);
+    font-size: 1.1rem;
+}
+
+.extra-content .pricing-schedule {
+    margin: var(--space-md) 0;
+    flex-grow: 1;
+}
+
+.extra-content .schedule-item {
+    padding: 0;
+    border: none;
+    margin-bottom: 0;
+    font-size: 1rem;
+    justify-content: flex-start;
+    background: transparent;
+    text-align: left;
+}
+
+.extra-content .schedule-item:hover {
+    border-color: transparent;
+}
+
+.extra-content .pricing-value {
+    font-size: 2.5rem;
+    margin: var(--space-lg) 0;
+}
+
+@media (max-width: 768px) {
+    .extra-item-horizontal {
+        flex-direction: column;
+    }
+
+    .extra-image {
+        min-height: auto;
+        flex: none;
+    }
+
+    .extra-image img {
+        position: static;
+        height: 250px;
+    }
+
+    .extra-content {
+        padding: var(--space-2xl);
+        text-align: center;
+    }
+
+    .extra-content .schedule-item {
+        justify-content: center;
+        text-align: center;
+    }
+
+    .page-orcamento .extra-image img {
+        height: 180px;
+    }
+
+    .page-orcamento .extra-content {
+        padding: var(--space-lg);
+    }
+
+    .page-orcamento .extra-content .btn {
+        align-self: center;
+    }
+}
+
+.pricing-note {
+    background: var(--color-bg-alt);
+    border-radius: var(--radius-lg);
+    padding: var(--space-xl);
+    margin: var(--space-2xl) 0;
+    font-size: 0.95rem;
+    color: var(--color-text-light);
+    border: 2px dashed rgba(137, 180, 196, 0.4);
+}
+
+/* ============================================
+   FAQ SECTION
+   ============================================ */
+.faq-section {
+    padding: var(--space-4xl) 0;
+    background: var(--color-bg-alt);
+}
+
+.faq-list {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.faq-item {
+    background: var(--color-white);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--space-md);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow var(--transition-base);
+}
+
+.faq-item:hover {
+    box-shadow: var(--shadow-md);
+}
+
+.faq-question {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-lg) var(--space-xl);
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--color-text);
+    transition: color var(--transition-fast);
+    gap: var(--space-md);
+}
+
+.faq-question:hover {
+    color: var(--color-primary);
+}
+
+.faq-toggle {
+    width: 32px;
+    height: 32px;
+    border-radius: var(--radius-md);
+    background: var(--pastel-blue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    flex-shrink: 0;
+    transition: all var(--transition-base);
+    color: var(--color-primary-dark);
+}
+
+.faq-item.active .faq-toggle {
+    background: var(--color-primary);
+    color: var(--color-white);
+    transform: rotate(45deg);
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.4s ease;
+}
+
+.faq-item.active .faq-answer {
+    max-height: 300px;
+    padding: 0 var(--space-xl) var(--space-lg);
+}
+
+.faq-answer p {
+    color: var(--color-text-light);
+    font-size: 0.95rem;
+    line-height: 1.7;
+}
+
+/* ============================================
+   THEMES SECTION
+   ============================================ */
+.themes-section {
+    padding: var(--space-4xl) 0;
+    background: var(--color-bg);
+    position: relative;
+    overflow: hidden;
+}
+
+.themes-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-md);
+    margin-bottom: var(--space-lg);
+}
+
+.theme-card {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    border-radius: var(--radius-md);
+    padding: var(--space-lg);
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-sm);
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all var(--transition-base);
+    border: 2px solid transparent;
+    cursor: pointer;
+}
+
+.theme-card:hover {
+    border-color: var(--color-primary-light);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+}
+
+.theme-card .theme-emoji {
+    font-size: 1.3rem;
+}
+
+/* ============================================
+   CONTACT PAGE
+   ============================================ */
+.contact-section {
+    padding: var(--space-4xl) 0;
+    background: var(--color-bg);
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-3xl);
+    align-items: stretch;
+}
+
+.contact-form {
+    background: var(--color-white);
+    padding: var(--space-3xl);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+}
+
+.form-group {
+    margin-bottom: var(--space-lg);
+}
+
+.form-label {
+    display: block;
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-bottom: var(--space-sm);
+    color: var(--color-text);
+}
+
+.form-input,
+.form-textarea {
+    width: 100%;
+    padding: 0.85rem var(--space-lg);
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-md);
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    transition: all var(--transition-fast);
+    background: var(--color-bg);
+    color: var(--color-text);
+}
+
+.form-input:focus,
+.form-textarea:focus {
+    outline: none;
+    border-color: var(--color-primary-light);
+    box-shadow: 0 0 0 4px rgba(82, 183, 136, 0.1);
+    background: var(--color-white);
+}
+
+.form-textarea {
+    min-height: 140px;
+    resize: vertical;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-md);
+}
+
+.contact-info-section {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xl);
+    min-height: 100%;
+    height: 100%;
+}
+
+.contact-info-card {
+    background: var(--color-white);
+    padding: var(--space-xl);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-lg);
+    transition: all var(--transition-base);
+}
+
+.contact-info-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+}
+
+.contact-info-icon {
+    width: 55px;
+    height: 55px;
+    border-radius: var(--radius-full);
+    background: var(--pastel-orange);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+.contact-info-text h4 {
+    margin-bottom: var(--space-xs);
+    font-size: 1rem;
+}
+
+.contact-info-text p {
+    color: var(--color-text-light);
+    font-size: 0.9rem;
+    margin-bottom: 0;
+}
+
+.contact-info-text a {
+    color: var(--color-primary);
+}
+
+.contact-info-text a:hover {
+    text-decoration: underline;
+}
+
+/* Map — preenche a altura útil da coluna (vh mínimo no iframe) */
+.contact-map {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    min-height: 0;
+    margin-top: var(--space-md);
+    height: 85% !important;
+}
+
+.contact-map-frame {
+    flex: 1 1 auto;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    min-height: min(52vh, 640px);
+    height: 100%;
+    background: var(--color-bg-alt);
+}
+
+.contact-map-frame iframe {
+    width: 100%;
+    height: 100%;
+    min-height: min(52vh, 640px);
+    border: none;
+    display: block;
+}
+
+.contact-map-open-link {
+    margin: var(--space-sm) 0 0;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+.contact-map-open-link a {
+    color: var(--color-primary);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.contact-map-open-link a:hover {
+    text-decoration: underline;
+}
+
+/* Form success/error message */
+.form-message {
+    padding: var(--space-md) var(--space-lg);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--space-lg);
+    font-weight: 500;
+    display: none;
+}
+
+.form-message.success {
+    background: var(--pastel-green);
+    color: var(--color-primary-dark);
+    display: block;
+    border-left: 4px solid var(--color-primary);
+}
+
+.form-message.error {
+    background: #ffe0e0;
+    color: #c0392b;
+    display: block;
+    border-left: 4px solid #c0392b;
+}
+
+/* ============================================
+   GALLERY PAGE
+   ============================================ */
+.gallery-page-section {
+    padding-bottom: var(--space-4xl);
+    background: var(--color-bg);
+    min-height: 80vh;
+}
+
+.gallery-filters {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-3xl);
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    padding: 0.5rem 1.3rem;
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    background: var(--color-white);
+    cursor: pointer;
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: all var(--transition-base);
+    color: var(--color-text);
+}
+
+.filter-btn.active,
+.filter-btn:hover {
+    border-color: var(--color-primary);
+    background: var(--color-primary);
+    color: var(--color-white);
+}
+
+.gallery-masonry {
+    columns: 3;
+    column-gap: var(--space-md);
+}
+
+.masonry-item {
+    break-inside: avoid;
+    margin-bottom: var(--space-md);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    cursor: pointer;
+    position: relative;
+    transition: all var(--transition-base);
+}
+
+.masonry-item:hover {
+    transform: scale(1.02);
+    box-shadow: var(--shadow-lg);
+}
+
+.masonry-item img {
+    width: 100%;
+    display: block;
+    transition: transform var(--transition-slow);
+}
+
+.masonry-item:hover img {
+    transform: scale(1.05);
+}
+
+/* Lightbox */
+.lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all var(--transition-base);
+}
+
+.lightbox.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.lightbox-content {
+    max-width: 90%;
+    max-height: 90vh;
+}
+
+.lightbox-content img {
+    max-width: 100%;
+    max-height: 85vh;
+    object-fit: contain;
+    border-radius: var(--radius-md);
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 2rem;
+    color: var(--color-white);
+    cursor: pointer;
+    background: none;
+    border: none;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-full);
+    transition: background var(--transition-fast);
+}
+
+.lightbox-close:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.lightbox-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 2rem;
+    color: var(--color-white);
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-full);
+    transition: background var(--transition-fast);
+}
+
+.lightbox-nav:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.lightbox-prev {
+    left: 20px;
+}
+
+.lightbox-next {
+    right: 20px;
+}
+
+/* ============================================
+   ORCAMENTO PAGE HEADER
+   ============================================ */
+.page-header {
+    padding-top: calc(var(--header-height) + var(--space-3xl));
+    padding-bottom: var(--space-3xl);
+    text-align: center;
+    background: linear-gradient(135deg, var(--pastel-blue), var(--pastel-green), var(--pastel-cream));
+    position: relative;
+    overflow: hidden;
+}
+
+/* Onda na transição para o conteúdo branco (SVG escalável, preserveAspectRatio none) */
+.page-header::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background-color: var(--color-white);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 60' preserveAspectRatio='none'%3E%3Cpath fill='%23ffffff' d='M0%2030%20C360%204%20720%2050%201080%2026%20C1260%2010%201380%2024%201440%2020%20L1440%2060%20L0%2060%20Z'/%3E%3C/svg%3E");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center bottom;
+}
+
+.page-header h1 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    margin-bottom: var(--space-md);
+}
+
+.page-header p {
+    color: var(--color-text-light);
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+/*
+ * Primeira secção após o título: 48px (--page-content-after-header).
+ * Usamos IDs em vez de .page-header + section porque comentários HTML entre
+ * </div> e <section> quebram o combinador adjacente (+) em alguns casos.
+ */
+#pricing.pricing-section,
+#contact.contact-section,
+#availability.section,
+#gallery-page.gallery-page-section,
+#ilha-passes-main.section,
+#legal-page.legal-page-section,
+#termos-page.legal-page-section {
+    padding-top: var(--page-content-after-header) !important;
+}
+
+.site-main > .page-header ~ .container {
+    padding-top: var(--page-content-after-header) !important;
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+.site-footer {
+    background: var(--footer-bg);
+    color: var(--footer-text);
+    padding: var(--space-4xl) 0 var(--space-xl);
+    position: relative;
+    overflow: hidden;
+}
+
+.footer-clouds {
+    position: absolute;
+    top: -30px;
+    left: 0;
+    right: 0;
+    height: 60px;
+    pointer-events: none;
+}
+
+.cloud {
+    position: absolute;
+    background: var(--color-bg);
+    border-radius: 50%;
+    opacity: 0.1;
+    /* Reduced opacity for dark background */
+}
+
+.cloud-1 {
+    width: 200px;
+    height: 60px;
+    top: 0;
+    left: 10%;
+}
+
+.cloud-2 {
+    width: 150px;
+    height: 50px;
+    top: 5px;
+    left: 45%;
+}
+
+.cloud-3 {
+    width: 180px;
+    height: 55px;
+    top: 3px;
+    right: 10%;
+}
+
+.footer-container {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 0 var(--space-xl);
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1.5fr;
+    gap: var(--space-3xl);
+    padding-bottom: var(--space-3xl);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.footer-logo .logo-text {
+    font-size: 1.8rem;
+}
+
+.footer-logo .logo-fradi {
+    color: var(--color-white);
+}
+
+.footer-logo .logo-festas {
+    color: var(--color-secondary);
+}
+
+.footer-description {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
+    margin-top: var(--space-md);
+    line-height: 1.6;
+}
+
+.footer-social {
+    display: flex;
+    gap: var(--space-md);
+    margin-top: var(--space-lg);
+}
+
+.social-link {
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-full);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    color: rgba(255, 255, 255, 0.8);
+    transition: all var(--transition-fast);
+}
+
+.social-link:hover {
+    border-color: var(--color-secondary);
+    color: var(--color-secondary);
+    transform: translateY(-2px);
+}
+
+.footer-title {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--color-white);
+    margin-bottom: var(--space-lg);
+}
+
+.footer-links li {
+    margin-bottom: var(--space-sm);
+}
+
+.footer-links a {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
+    transition: all var(--transition-fast);
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+}
+
+.footer-links a:hover {
+    color: var(--color-white);
+    transform: translateX(3px);
+}
+
+.footer-contact li {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-md);
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.footer-contact li svg {
+    flex-shrink: 0;
+    margin-top: 2px;
+    color: var(--color-secondary);
+}
+
+.footer-contact a {
+    color: rgba(255, 255, 255, 0.7);
+    transition: color var(--transition-fast);
+}
+
+.footer-contact a:hover {
+    color: var(--color-white);
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: var(--space-xl);
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.footer-character {
+    position: absolute;
+    bottom: 20px;
+    right: 40px;
+    font-size: 4rem;
+    opacity: 0.1;
+    /* Reduced opacity for dark background */
+    animation: bounce 4s ease-in-out infinite;
+}
+
+/* WhatsApp float button (all pages) */
+.eh-whatsapp-float {
+    position: fixed;
+    right: 22px;
+    bottom: 22px;
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    background: #25d366;
+    color: #fff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 22px rgba(37, 211, 102, 0.35);
+    z-index: 9999;
+    transition: transform var(--transition-fast), filter var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.eh-whatsapp-float svg {
+    width: 30px;
+    height: 30px;
+}
+
+.eh-whatsapp-float:hover {
+    filter: brightness(1.05);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(37, 211, 102, 0.45);
+}
+
+@media (max-width: 768px) {
+    .eh-whatsapp-float {
+        right: 14px;
+        bottom: 14px;
+        width: 54px;
+        height: 54px;
+    }
+
+    .eh-whatsapp-float svg {
+        width: 28px;
+        height: 28px;
+    }
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(-20px) rotate(5deg);
+    }
+}
+
+@keyframes balloonFloat {
+    0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 0.6;
+    }
+
+    90% {
+        opacity: 0.6;
+    }
+
+    100% {
+        transform: translateY(-100px) rotate(15deg);
+        opacity: 0;
+    }
+}
+
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-15px);
+    }
+}
+
+@keyframes twinkle {
+
+    0%,
+    100% {
+        opacity: 0.4;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 0.8;
+        transform: scale(1.3);
+    }
+}
+
+@keyframes bubbleFloat {
+    0% {
+        transform: translateY(100%) scale(0);
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 0.6;
+        transform: translateY(60%) scale(1);
+    }
+
+    80% {
+        opacity: 0.4;
+    }
+
+    100% {
+        transform: translateY(-120%) scale(0.5);
+        opacity: 0;
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+/* Scroll reveal animation */
+.reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+div#contact-form.reveal.visible{
+    height: fit-content;
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 1024px) {
+    .hero-section.mode-slide .hero-layout {
+        grid-template-columns: 1fr;
+        gap: var(--space-xl);
+    }
+
+    /* Slider acima do texto (tablet / mobile em modo slide) */
+    .hero-section.mode-slide .hero-slider--desktop {
+        order: -1;
+    }
+
+    .hero-slider {
+        max-width: 560px;
+        margin: 0 auto;
+    }
+
+    .hero-content {
+        max-width: 100%;
+        text-align: center;
+    }
+
+    .hero-buttons {
+        justify-content: center;
+    }
+
+    .hero-subtitle {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: auto;
+    }
+
+    .gallery-item:nth-child(1),
+    .gallery-item:nth-child(6) {
+        grid-column: span 1;
+    }
+
+    .benefits-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-2xl);
+    }
+
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-info-section {
+        height: auto;
+    }
+
+    .contact-map {
+        flex: none;
+    }
+
+    .themes-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .gallery-masonry {
+        columns: 2;
+    }
+}
+
+@media (max-width: 768px) {
+    :root {
+        --header-height: 65px;
+    }
+
+    /* Home: secções com padding vertical mais compacto */
+    body.home section.section,
+    body.home .steps-section {
+        padding: 50px 0 !important;
+    }
+
+    /* Páginas com .page-header: menos espaço no título e até ao conteúdo (mobile) */
+    .page-header {
+        padding-top: calc(var(--header-height) + var(--space-sm)) !important;
+        padding-bottom: var(--space-lg) !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+
+    .page-header::after {
+        height: 28px;
+    }
+
+    .page-header h1 {
+        margin-bottom: var(--space-xs);
+        font-size: clamp(1.35rem, 5.5vw, 1.95rem);
+    }
+
+    .page-header p {
+        font-size: 0.92rem;
+        line-height: 1.45;
+        margin-bottom: 1rem;
+    }
+
+    #pricing.pricing-section,
+    #contact.contact-section,
+    #availability.section,
+    #gallery-page.gallery-page-section,
+    #ilha-passes-main.section,
+    #legal-page.legal-page-section,
+    #termos-page.legal-page-section {
+        padding-top: var(--space-xl) !important;
+    }
+
+    #gallery-page.gallery-page-section {
+        min-height: 0;
+    }
+
+    .site-main > .page-header ~ .container {
+        padding-top: var(--space-xl) !important;
+    }
+
+    .main-navigation,
+    .header-cta {
+        display: none;
+    }
+
+    .header-end {
+        gap: 0.25rem;
+    }
+
+    .header-woo-icon {
+        width: 38px;
+        height: 38px;
+    }
+
+    .mobile-menu-toggle {
+        display: flex;
+    }
+
+    .header-container {
+        padding-left: var(--space-md);
+        padding-right: var(--space-md);
+    }
+
+    .hero-section {
+        min-height: min(78vh, 820px);
+        padding-bottom: var(--space-xl);
+    }
+
+    .steps-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-lg);
+    }
+
+    .step-card:not(:last-child)::after {
+        display: none;
+    }
+
+    .gallery-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto;
+    }
+
+    .services-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .benefits-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .testimonials-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .pricing-tabs {
+        gap: var(--space-xs);
+    }
+
+    .pricing-tab {
+        padding: 0.5rem 1rem;
+        font-size: 0.8rem;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-xl);
+        text-align: center;
+    }
+
+    .footer-social {
+        justify-content: center;
+    }
+
+    .footer-contact li {
+        justify-content: center;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .gallery-masonry {
+        columns: 2;
+        column-gap: var(--space-sm);
+    }
+
+    .masonry-item {
+        margin-bottom: var(--space-sm);
+    }
+
+    .themes-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .btn {
+        padding: 0.65rem 1.25rem;
+        font-size: 0.9rem;
+    }
+
+    /* Hero mobile: slide acima do texto, imagem rectangular, botões largura total */
+    .mode-bubbles .hero-bubbles-container {
+        display: none !important;
+    }
+
+    .hero-section.mode-slide .hero-layout {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: var(--space-lg);
+    }
+
+    .hero-section.mode-slide .hero-slider--desktop {
+        order: -1;
+        width: 100% !important;
+        max-width: none !important;
+        margin-left: 0 !important;
+        height: auto !important;
+        aspect-ratio: 4 / 3;
+        max-height: min(52vh, 420px);
+    }
+
+    .hero-section .hero-slider {
+        height: auto !important;
+        aspect-ratio: 4 / 3;
+        max-height: min(52vh, 420px);
+        margin-left: 0 !important;
+        max-width: 100% !important;
+    }
+
+    .hero-section .hero-slide {
+        border-radius: var(--radius-lg) !important;
+        animation: none !important;
+        border-width: 4px;
+    }
+
+    .hero-section .hero-slide img {
+        object-fit: cover;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        align-items: stretch;
+        width: 100%;
+        gap: var(--space-sm);
+    }
+
+    .hero-buttons .btn {
+        width: 100%;
+        max-width: none;
+        justify-content: center;
+        text-align: center;
+        box-sizing: border-box;
+    }
+
+    .hero-content {
+        padding-top: var(--space-md);
+        padding-bottom: var(--space-xl);
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 1.8rem;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .gallery-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .pricing-card {
+        padding: var(--space-xl);
+    }
+
+    .contact-form {
+        padding: var(--space-xl);
+    }
+}
+
+/* ============================================
+   PAGE SPECIFIC BACKGROUNDS
+   ============================================ */
+.page-orcamento .pricing-section {
+    background: var(--color-bg);
+}
+
+/* Festas / Orçamento: cards mais compactos; títulos e preços a 32px (todas as abas) */
+.page-orcamento .extras-grid {
+    gap: var(--space-lg);
+}
+
+.page-orcamento .pricing-card {
+    padding: var(--space-xl) var(--space-lg);
+}
+
+.page-orcamento .pricing-card h2,
+.page-orcamento .extra-content h2 {
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: var(--space-xs);
+    color: var(--color-primary);
+}
+
+.page-orcamento .pricing-section .pricing-value,
+.page-orcamento .extra-content .pricing-value {
+    font-size: 32px;
+    margin: var(--space-md) 0;
+    line-height: 1.1;
+}
+
+.page-orcamento .pricing-section .pricing-value .currency,
+.page-orcamento .extra-content .pricing-value .currency {
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.page-orcamento .pricing-card .pricing-time {
+    font-weight: 600;
+    color: var(--color-primary);
+    font-size: 1rem;
+    margin-bottom: var(--space-xs);
+}
+
+.page-orcamento .pricing-schedule {
+    margin: var(--space-md) 0;
+}
+
+.page-orcamento .extra-item-horizontal {
+    align-items: stretch;
+}
+
+/* Caixa de regras — conteúdo rich text (editor + omissão tema) */
+.page-ilha-passes .ilha-passes-regras-content {
+    margin-top: 0;
+}
+
+.page-ilha-passes .ilha-passes-regras-content > *:first-child {
+    margin-top: 0;
+}
+
+.page-ilha-passes .ilha-passes-regras-content h2,
+.page-ilha-passes .ilha-passes-regras-content h3,
+.page-ilha-passes .ilha-passes-regras-content h4 {
+    font-family: var(--font-heading);
+    color: var(--color-primary-dark);
+    margin: var(--space-lg) 0 var(--space-sm);
+    line-height: 1.3;
+}
+
+.page-ilha-passes .ilha-passes-regras-content h2 {
+    font-size: 1.25rem;
+}
+
+.page-ilha-passes .ilha-passes-regras-content h3 {
+    font-size: 1.1rem;
+}
+
+.page-ilha-passes .ilha-passes-regras-content h4 {
+    font-size: 1rem;
+}
+
+.page-ilha-passes .ilha-passes-regras-content p {
+    margin: 0 0 var(--space-md);
+}
+
+.page-ilha-passes .ilha-passes-regras-content ul,
+.page-ilha-passes .ilha-passes-regras-content ol {
+    margin: 0 0 var(--space-md);
+    padding-left: 1.35rem;
+}
+
+/* Reset global (ul,ol { list-style:none }) — repor marcas nas regras */
+.page-ilha-passes .ilha-passes-regras-content ul {
+    list-style: disc;
+    list-style-position: outside;
+}
+
+.page-ilha-passes .ilha-passes-regras-content ol {
+    list-style: decimal;
+    list-style-position: outside;
+}
+
+.page-ilha-passes .ilha-passes-regras-content ul ul {
+    list-style: circle;
+    margin-top: 0.35rem;
+}
+
+.page-ilha-passes .ilha-passes-regras-content li {
+    display: list-item;
+}
+
+.page-ilha-passes .ilha-passes-regras-content a {
+    color: var(--color-primary);
+    text-decoration: underline;
+}
+
+.page-ilha-passes .ilha-passes-regras-content a:hover {
+    color: var(--color-primary-dark);
+}
+
+/* Páginas legais (Privacidade, Termos) */
+#legal-page.legal-page-section,
+#termos-page.legal-page-section {
+    background: var(--color-bg);
+}
+
+.legal-page-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.legal-page-lead {
+    color: var(--color-text-light);
+    font-size: 1.05rem;
+    line-height: 1.75;
+    margin-bottom: var(--space-xl);
+}
+
+.legal-page-content h2 {
+    font-family: var(--font-heading);
+    color: var(--color-primary-dark);
+    font-size: 32px;
+    margin-top: 1.5rem;
+    margin-bottom: var(--space-md);
+    font-weight: 700;
+}
+
+.legal-page-content h2:first-of-type {
+    margin-top: 1.5rem;
+}
+
+.legal-page-content p,
+.legal-page-content li {
+    color: var(--color-text-light);
+    line-height: 1.75;
+    font-size: 1rem;
+}
+
+.legal-page-content ul {
+    margin: var(--space-md) 0 var(--space-lg);
+    padding-left: 1.25rem;
+}
+
+.legal-page-content a {
+    color: var(--color-primary);
+    text-decoration: underline;
+}
+
+.legal-page-content a:hover {
+    color: var(--color-primary-dark);
+}
+
+.page-orcamento .extra-image {
+    flex: 0 0 38%;
+    min-height: 140px;
+}
+
+.page-orcamento .extra-content {
+    padding: var(--space-lg) var(--space-xl);
+}
+
+.page-orcamento .extra-content .pricing-time {
+    font-size: 1rem;
+    margin-bottom: var(--space-xs);
+}
+
+.page-orcamento .extra-content .pricing-schedule {
+    margin: var(--space-sm) 0;
+}
+
+.page-orcamento .extra-content .btn {
+    margin-top: var(--space-sm);
+    align-self: flex-start;
+}
+
+.page-orcamento .pricing-card .btn.pricing-card-cta {
+    margin-top: var(--space-md);
+    width: 100%;
+}
+
+/* Frosted glass effect for certain cards */
+.glass {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Loading skeleton */
+.skeleton {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: skeleton-loading 1.5s infinite;
+}
+
+@keyframes skeleton-loading {
+    0% {
+        background-position: 200% 0;
+    }
+
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+/* ============================================
+   WOOCOMMERCE OVERRIDES (CART, CHECKOUT, ETC)
+   ============================================ */
+.woocommerce table.shop_table {
+    border: none;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+    margin-bottom: var(--space-3xl);
+    width: 100%;
+}
+
+.woocommerce table.shop_table th {
+    background-color: var(--color-bg-alt);
+    color: var(--color-primary-dark);
+    font-weight: 700;
+    font-family: var(--font-heading);
+    padding: var(--space-lg);
+    border: none;
+}
+
+.woocommerce table.shop_table td {
+    border-top: 1px solid var(--color-border);
+    padding: var(--space-lg);
+    vertical-align: middle;
+}
+
+.woocommerce-cart-form__cart-item {
+    background: var(--color-white);
+    transition: background 0.3s;
+}
+
+.woocommerce-cart-form__cart-item:hover {
+    background: var(--color-bg);
+}
+
+.woocommerce img {
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+}
+
+.woocommerce a.remove {
+    color: var(--color-primary-dark) !important;
+    background: var(--pastel-red) !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    line-height: 1;
+    transition: all 0.2s;
+    text-decoration: none;
+}
+
+.woocommerce a.remove:hover {
+    background: #e63946 !important;
+    color: white !important;
+    text-decoration: none;
+}
+
+.woocommerce .quantity .qty {
+    border-radius: var(--radius-md);
+    border: 2px solid var(--color-border);
+    padding: 0.5rem;
+    width: 60px;
+    text-align: center;
+    font-family: var(--font-body);
+}
+
+.woocommerce button[name="update_cart"] {
+    background: var(--color-border) !important;
+    color: var(--color-text) !important;
+    border-radius: var(--radius-lg);
+    padding: 0.8rem 1.5rem;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.woocommerce button[name="update_cart"]:hover {
+    background: var(--color-text-muted) !important;
+    color: var(--color-white) !important;
+}
+
+.woocommerce .cart-collaterals .cart_totals {
+    background: var(--color-white);
+    padding: var(--space-2xl);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    width: 100% !important;
+    float: none !important;
+}
+
+.woocommerce .cart-collaterals h2 {
+    color: var(--color-primary-dark);
+    font-size: 1.8rem;
+    margin-bottom: var(--space-lg);
+    border-bottom: 2px solid var(--color-primary-light);
+    padding-bottom: var(--space-sm);
+}
+
+.woocommerce-cart .wc-proceed-to-checkout a.checkout-button {
+    background: var(--color-primary) !important;
+    color: white !important;
+    border-radius: var(--radius-xl);
+    padding: 1rem 2rem;
+    font-weight: bold;
+    font-size: 1.1rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    margin-top: var(--space-lg);
+}
+
+.woocommerce-cart .wc-proceed-to-checkout a.checkout-button:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+    background: var(--color-primary-dark) !important;
+}
+
+.woocommerce table.shop_table .coupon {
+    display: flex;
+    gap: var(--space-sm);
+}
+
+.woocommerce table.shop_table .coupon input.input-text {
+    border-radius: var(--radius-md);
+    border: 2px solid var(--color-border);
+    padding: 0.5rem 1rem;
+}
+
+.woocommerce table.shop_table .coupon button.button {
+    background: var(--color-primary-light) !important;
+    color: var(--color-primary-dark) !important;
+    border-radius: var(--radius-md);
+    padding: 0.5rem 1.5rem;
+    border: none;
+    font-weight: 600;
+}
+
+.woocommerce table.shop_table .coupon button.button:hover {
+    background: var(--color-primary) !important;
+    color: white !important;
+}
+
+/* ============================================
+   CARRINHO & CHECKOUT — fundo branco, Poppins, marca
+   ============================================ */
+body.woocommerce-cart,
+body.woocommerce-checkout,
+body.woocommerce-order-received {
+    background-color: var(--color-white) !important;
+}
+
+body.woocommerce-cart .site-main .container .entry-content,
+body.woocommerce-checkout .site-main .container .entry-content,
+body.woocommerce-order-received .site-main .container .entry-content {
+    background: var(--color-white) !important;
+    border: 1px solid var(--color-border);
+    box-shadow: none;
+    font-family: var(--font-body);
+}
+
+body.woocommerce-cart .woocommerce,
+body.woocommerce-checkout .woocommerce,
+body.woocommerce-order-received .woocommerce {
+    font-family: var(--font-body);
+    color: var(--color-text);
+}
+
+/* Botões globais WooCommerce — tipografia */
+body.woocommerce-cart .woocommerce .button,
+body.woocommerce-cart .woocommerce a.button,
+body.woocommerce-cart .woocommerce button.button,
+body.woocommerce-cart .woocommerce input.button,
+body.woocommerce-checkout .woocommerce .button,
+body.woocommerce-checkout .woocommerce a.button,
+body.woocommerce-checkout .woocommerce button.button,
+body.woocommerce-checkout .woocommerce input.button,
+body.woocommerce-checkout #place_order,
+body.woocommerce-order-received .woocommerce .button {
+    font-family: var(--font-heading) !important;
+    font-weight: 600 !important;
+    border-radius: var(--radius-xl) !important;
+    padding: 0.85rem 1.5rem !important;
+    transition: background var(--transition-fast), color var(--transition-fast), box-shadow var(--transition-fast),
+        transform var(--transition-fast) !important;
+}
+
+/* CTAs principais: finalizar compra, encomendar, ir para checkout */
+body.woocommerce-cart .wc-proceed-to-checkout a.checkout-button,
+body.woocommerce-cart .woocommerce a.checkout-button.button,
+body.woocommerce-checkout #place_order,
+body.woocommerce-checkout button#place_order.alt,
+body.woocommerce-checkout .woocommerce #place_order {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%) !important;
+    color: var(--color-white) !important;
+    border: none !important;
+    box-shadow: var(--shadow-sm);
+}
+
+body.woocommerce-cart .wc-proceed-to-checkout a.checkout-button:hover,
+body.woocommerce-checkout #place_order:hover,
+body.woocommerce-checkout button#place_order:hover {
+    background: linear-gradient(135deg, var(--color-primary-dark) 0%, #246f70 100%) !important;
+    color: var(--color-white) !important;
+    box-shadow: var(--shadow-md);
+    transform: translateY(-1px);
+}
+
+/* Ligações secundárias tipo «← Voltar ao carrinho» */
+body.woocommerce-checkout .woocommerce a.wc-backward {
+    background: transparent !important;
+    color: var(--color-primary-dark) !important;
+    border: 2px solid var(--color-primary-light) !important;
+    box-shadow: none !important;
+}
+
+body.woocommerce-checkout .woocommerce a.wc-backward:hover {
+    background: var(--pastel-blue) !important;
+    transform: none !important;
+}
+
+/* Atualizar carrinho — secundário mas visível */
+body.woocommerce-cart .woocommerce button[name="update_cart"] {
+    background: var(--color-primary-light) !important;
+    color: var(--color-primary-dark) !important;
+    border: 2px solid var(--color-primary) !important;
+}
+
+body.woocommerce-cart .woocommerce button[name="update_cart"]:hover {
+    background: var(--color-primary) !important;
+    color: var(--color-white) !important;
+    border-color: var(--color-primary-dark) !important;
+}
+
+/* Checkout: campos */
+body.woocommerce-checkout .woocommerce form .form-row input.input-text,
+body.woocommerce-checkout .woocommerce form .form-row textarea,
+body.woocommerce-checkout .woocommerce form .form-row select,
+body.woocommerce-checkout .select2-container .select2-selection--single {
+    font-family: var(--font-body);
+    border-radius: var(--radius-md);
+    border: 2px solid var(--color-border);
+}
+
+body.woocommerce-checkout #customer_details h3,
+body.woocommerce-checkout #order_review_heading,
+body.woocommerce-checkout .woocommerce-billing-fields h3,
+body.woocommerce-checkout .woocommerce-shipping-fields h3 {
+    font-family: var(--font-heading);
+    color: var(--color-primary-dark);
+}
+
+body.woocommerce-checkout #payment {
+    background: transparent;
+    border-radius: 0;
+    border: none;
+}
+
+body.woocommerce-checkout #payment ul.payment_methods {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+body.woocommerce-checkout #payment ul.payment_methods li {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    position: relative;
+    margin: 0 0 0.65rem;
+    padding: 0;
+    list-style: none;
+}
+
+body.woocommerce-checkout #payment ul.payment_methods li > input[type="radio"] {
+    position: absolute;
+    left: 0.9rem;
+    top: 1.05rem;
+    z-index: 1;
+    margin: 0;
+}
+
+body.woocommerce-checkout #payment ul.payment_methods li > label {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 0.55rem;
+    width: 100%;
+    margin: 0;
+    padding: 0.8rem 0.9rem 0.8rem 2.35rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background: var(--color-white);
+    cursor: pointer;
+    line-height: 1.3;
+    font-weight: 500;
+}
+
+body.woocommerce-checkout #payment ul.payment_methods li > input[type="radio"]:checked + label {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 1px var(--color-primary);
+}
+
+body.woocommerce-checkout #payment ul.payment_methods li > label img {
+    display: inline-block;
+    vertical-align: middle;
+    max-height: 28px;
+    width: auto;
+    margin: 0 0 0 auto !important;
+    float: none !important;
+    flex-shrink: 0;
+}
+
+body.woocommerce-checkout #payment div.payment_box {
+    flex: 1 1 100%;
+    background: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    margin: 0.45rem 0 0;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+body.woocommerce-checkout.woocommerce-order-pay .eh-pay-methods #payment {
+    background: transparent;
+    border: none;
+}
+
+/* Blocos (checkout em blocos / carrinho em blocos) */
+body.woocommerce-page .wc-block-components-button:not(.is-link),
+body.woocommerce-page .wp-block-woocommerce-proceed-to-checkout-block .wc-block-components-button,
+body.woocommerce-page .wp-block-woocommerce-mini-cart-checkout-button-block .wc-block-components-button {
+    font-family: var(--font-heading) !important;
+    font-weight: 600 !important;
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%) !important;
+    color: #fff !important;
+    border: none !important;
+    border-radius: var(--radius-xl) !important;
+}
+
+body.woocommerce-page .wc-block-components-button:not(.is-link):hover {
+    filter: brightness(1.05);
+}
+
+body.woocommerce-page .wc-block-components-text-input input,
+body.woocommerce-page .wc-block-components-text-input textarea {
+    font-family: var(--font-body);
+    border-radius: var(--radius-md);
+}
+
+/* Título página — manter legível sobre fundo branco */
+body.woocommerce-cart .page-header,
+body.woocommerce-checkout .page-header,
+body.woocommerce-order-received .page-header {
+    background: linear-gradient(135deg, var(--color-primary-light), var(--color-white)) !important;
+}
+
+/* Checkbox obrigatório — documentos de contratação (checkout clássico) */
+body.woocommerce-checkout .eh-contract-checkout-field.woocommerce-form-row {
+    margin-top: var(--space-lg);
+    margin-bottom: var(--space-lg);
+    padding: var(--space-md) var(--space-lg);
+    background: var(--color-bg-alt);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+}
+
+body.woocommerce-checkout .eh-contract-checkout-field label.checkbox {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-sm);
+    cursor: pointer;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--color-text);
+}
+
+body.woocommerce-checkout .eh-contract-checkout-field label.checkbox input[type='checkbox'] {
+    margin: 0.2rem 0 0;
+    flex-shrink: 0;
+    width: 1.1rem;
+    height: 1.1rem;
+    accent-color: var(--color-primary);
+}
+
+body.woocommerce-checkout .eh-contract-checkout-field label.checkbox .woocommerce-input-wrapper {
+    flex: 1;
+}
+
+body.woocommerce-checkout .eh-contract-checkout-field label.checkbox a {
+    color: var(--color-primary);
+    text-decoration: underline;
+}
+
+/* Checkout (blocos e clássico): links de documentos no texto legal final */
+body.woocommerce-checkout .eh-checkout-contract-links-inline,
+body.woocommerce-checkout .eh-checkout-contract-links-inline a {
+    font-size: 0.9rem;
+    line-height: 1.45;
+}
+body.woocommerce-checkout .eh-checkout-contract-links-inline a {
+    color: var(--color-primary);
+    text-decoration: underline;
+}
+
+/* Documentos logo abaixo do checkbox de confirmação (lista horizontal) */
+body.woocommerce-checkout .eh-contract-docs-inline {
+    margin: -4px 0 14px 1.9rem;
+    font-size: 0.9rem;
+    line-height: 1.45;
+    color: var(--color-text-light);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem 0.6rem;
+}
+body.woocommerce-checkout .eh-contract-docs-inline a {
+    color: var(--color-primary);
+    text-decoration: underline;
+}
+
+/* Confirmar reserva (order-pay): coluna principal (resumo + dados) + pagamento */
+body.woocommerce-checkout.woocommerce-order-pay form#order_review .eh-pay-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.75fr) minmax(260px, 0.85fr);
+    gap: var(--space-lg);
+    align-items: start;
+}
+
+body.woocommerce-checkout.woocommerce-order-pay .eh-pay-main {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+    min-width: 0;
+}
+
+body.woocommerce-checkout.woocommerce-order-pay .eh-pay-summary,
+body.woocommerce-checkout.woocommerce-order-pay .eh-pay-methods,
+body.woocommerce-checkout.woocommerce-order-pay .eh-pay-dados {
+    background: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+}
+
+body.woocommerce-checkout.woocommerce-order-pay .eh-pay-methods {
+    position: sticky;
+    top: calc(var(--header-height, 72px) + 1rem);
+}
+
+body.woocommerce-checkout.woocommerce-order-pay .eh-pay-summary h3,
+body.woocommerce-checkout.woocommerce-order-pay .eh-pay-methods h3,
+body.woocommerce-checkout.woocommerce-order-pay .eh-pay-dados h3 {
+    margin-bottom: var(--space-md);
+    font-size: 1.1rem;
+}
+
+body.woocommerce-checkout.woocommerce-order-pay .eh-pay-dados-intro,
+body.woocommerce-checkout.woocommerce-order-pay .eh-pay-dados-done-msg {
+    margin: 0 0 var(--space-md);
+    color: var(--color-text-light);
+    font-size: 0.95rem;
+}
+
+body.woocommerce-checkout.woocommerce-order-pay .eh-extra-group .product-name {
+    vertical-align: top;
+}
+
+body.woocommerce-checkout.woocommerce-order-pay .eh-extra-sublist {
+    margin-top: 0.5rem;
+    padding-left: 1rem;
+    list-style: disc;
+}
+
+body.woocommerce-checkout.woocommerce-order-pay .eh-extra-sublist li {
+    margin: 0 0 0.25rem;
+    color: var(--color-text-light);
+}
+
+body.woocommerce-checkout.woocommerce-order-pay .eh-full-total-row th,
+body.woocommerce-checkout.woocommerce-order-pay .eh-full-total-row td {
+    color: var(--color-primary-dark);
+    font-weight: 600;
+}
+
+body.woocommerce-checkout.woocommerce-order-pay .order-total th,
+body.woocommerce-checkout.woocommerce-order-pay .order-total td {
+    font-size: 1.05rem;
+}
+
+body.woocommerce-checkout.woocommerce-order-pay .eh-pay-methods #place_order {
+    width: 100%;
+    margin-top: var(--space-sm);
+}
+
+@media (max-width: 980px) {
+    body.woocommerce-checkout.woocommerce-order-pay form#order_review .eh-pay-grid {
+        grid-template-columns: 1fr;
+    }
+
+    body.woocommerce-checkout.woocommerce-order-pay .eh-pay-methods {
+        position: static;
+    }
+}
+
+/* Manhãs na Ilha — intro 2 colunas (acima dos packs) */
+.ilha-intro-section {
+    padding: clamp(2.5rem, 5vw, 4rem) 0 clamp(2rem, 4vw, 3rem);
+    background: var(--color-bg-alt);
+}
+
+/* Primeira secção sem .page-header: conteúdo não pode ficar por baixo do header fixo */
+.page-ilha-passes .ilha-intro-section {
+    padding-top: calc(var(--header-height) + clamp(1.5rem, 4vw, 2.5rem));
+}
+
+.page-ilha-passes .ilha-intro-title {
+    font-size: 40px;
+    line-height: 1.15;
+}
+
+.ilha-intro-container {
+    max-width: 1120px;
+}
+
+.ilha-intro-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(280px, 1fr);
+    gap: clamp(1.75rem, 4vw, 3rem);
+    align-items: center;
+}
+
+.ilha-intro-grid--text-only {
+    grid-template-columns: 1fr;
+}
+
+.ilha-intro-grid--text-only .ilha-intro-lead {
+    max-width: 42rem;
+}
+
+.ilha-intro-grid--text-only .ilha-intro-checklist-card {
+    max-width: 32rem;
+}
+
+.ilha-intro-col--text {
+    text-align: left;
+}
+
+.ilha-intro-title {
+    font-family: var(--font-heading);
+    font-size: clamp(1.75rem, 4vw, 2.35rem);
+    font-weight: 700;
+    color: var(--color-primary-dark);
+    margin: 0 0 var(--space-md);
+    line-height: 1.2;
+}
+
+.ilha-intro-lead {
+    margin: 0 0 var(--space-md);
+    color: var(--color-text);
+    font-size: 1.02rem;
+    line-height: 1.65;
+    max-width: 36rem;
+}
+
+.ilha-intro-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: var(--space-md) 0 var(--space-xl);
+    padding: 0.85rem 1.75rem;
+    border-radius: 999px;
+    background: var(--color-secondary);
+    color: #fff !important;
+    border: none;
+    font-weight: 600;
+    font-size: 1rem;
+    text-decoration: none;
+    box-shadow: 0 4px 14px rgba(232, 115, 74, 0.35);
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast), filter var(--transition-fast);
+}
+
+.ilha-intro-cta:hover {
+    filter: brightness(1.05);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(232, 115, 74, 0.4);
+}
+
+.ilha-intro-cta-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 1rem;
+    line-height: 1;
+    opacity: 0.95;
+}
+
+.ilha-intro-checklist-card {
+    background: var(--color-white);
+    border-radius: 20px;
+    padding: clamp(1.25rem, 3vw, 1.75rem);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    box-shadow: var(--shadow-sm);
+    max-width: 26rem;
+}
+
+.ilha-intro-checklist {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.ilha-intro-checklist li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    margin-bottom: 0.5rem;
+    font-size: 0.98rem;
+    line-height: 1.45;
+    color: var(--color-text);
+}
+
+.ilha-intro-checklist li:last-child {
+    margin-bottom: 0;
+}
+
+.ilha-intro-check {
+    color: var(--color-secondary);
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+}
+
+.ilha-intro-figure {
+    margin: 0;
+    border-radius: 24px;
+    overflow: hidden;
+    background: var(--color-white);
+    box-shadow: var(--shadow-md);
+}
+
+.ilha-intro-figure img {
+    display: block;
+    width: 100%;
+    height: auto;
+    vertical-align: middle;
+}
+
+@media (max-width: 900px) {
+    .ilha-intro-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-xl);
+    }
+
+    .ilha-intro-grid:not(.ilha-intro-grid--text-only) .ilha-intro-col--media {
+        order: -1;
+    }
+
+    .ilha-intro-checklist-card {
+        max-width: none;
+    }
+}
+
+/* Manhãs na Ilha — aviso (vagas) abaixo dos packs */
+.ilha-passes-notice {
+    --ilha-notice-bg: #ffefce45;
+    --ilha-notice-teal: #3a7d8e;
+    margin-top: var(--space-2xl);
+    margin-bottom: var(--space-lg);
+    border-radius: 24px;
+    background: var(--ilha-notice-bg);
+    box-shadow: 0 2px 14px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.07);
+    overflow: hidden;
+}
+
+.ilha-passes-notice__inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1.7fr) minmax(220px, 1fr);
+    gap: clamp(1.25rem, 3vw, 2.5rem);
+    align-items: center;
+    padding: clamp(1.75rem, 3.5vw, 2.75rem) clamp(1.5rem, 3vw, 2.75rem);
+}
+
+.ilha-passes-notice--text-only .ilha-passes-notice__inner {
+    grid-template-columns: 1fr;
+}
+
+.ilha-passes-notice__text {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0;
+    min-width: 0;
+}
+
+.ilha-passes-notice__kicker {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.55rem;
+    margin: 0 0 0.85rem;
+    font-size: 1.06rem;
+    line-height: 1.45;
+    color: var(--color-text);
+}
+
+.ilha-passes-notice__warn-icon {
+    flex-shrink: 0;
+    margin-top: 0.12rem;
+    color: var(--color-secondary);
+    display: block;
+}
+
+.ilha-passes-notice__kicker-line strong {
+    font-weight: 700;
+    margin-right: 0.3rem;
+}
+
+.ilha-passes-notice__body {
+    margin: 0 0 0.65rem;
+    font-size: 0.97rem;
+    line-height: 1.55;
+    color: var(--color-text);
+}
+
+.ilha-passes-notice__emphasis {
+    margin: 0 0 0.85rem;
+    font-size: 0.97rem;
+    line-height: 1.55;
+    color: var(--color-text);
+}
+
+.ilha-passes-notice__emphasis em {
+    font-style: italic;
+    font-weight: 500;
+}
+
+.ilha-passes-notice__cta {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 0.35rem 0.45rem;
+    margin: 0 0 0.85rem;
+    font-size: 0.97rem;
+    line-height: 1.5;
+    color: var(--color-text);
+}
+
+.ilha-passes-notice__cta-arrow {
+    color: var(--color-secondary);
+    font-weight: 700;
+    font-size: 1.05rem;
+    line-height: 1;
+}
+
+.ilha-passes-notice__cta-strong {
+    color: var(--ilha-notice-teal);
+    font-weight: 700;
+}
+
+.ilha-passes-notice__footer {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.45rem;
+    margin-top: 0.15rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.ilha-passes-notice__stat-plus {
+    flex-shrink: 0;
+    color: var(--ilha-notice-teal);
+    font-weight: 700;
+    font-size: 1.2rem;
+    line-height: 1.35;
+}
+
+.ilha-passes-notice__stat {
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.45;
+    color: var(--color-text);
+}
+
+.ilha-passes-notice__stat-strong {
+    color: var(--ilha-notice-teal);
+    font-weight: 700;
+}
+
+.ilha-passes-notice__media {
+    position: relative;
+    min-height: 180px;
+}
+
+.ilha-passes-notice__collage--single {
+    height: 100%;
+    min-height: 200px;
+    border-radius: 18px;
+    overflow: hidden;
+    border: 2px solid #fff;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+}
+
+.ilha-passes-notice__collage--single .ilha-passes-notice__img--single {
+    width: 100%;
+    height: 100%;
+    min-height: 200px;
+    object-fit: cover;
+    display: block;
+    vertical-align: middle;
+}
+
+.ilha-passes-notice__collage--triple {
+    position: relative;
+    height: 100%;
+    min-height: 240px;
+}
+
+.ilha-passes-notice__collage--triple .ilha-passes-notice__img--main {
+    position: relative;
+    z-index: 1;
+    width: 78%;
+    margin: 0 auto;
+    display: block;
+    border-radius: 16px;
+    border: 2px solid #fff;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    object-fit: cover;
+    aspect-ratio: 4/3;
+}
+
+.ilha-passes-notice__collage--triple .ilha-passes-notice__img--bl {
+    position: absolute;
+    z-index: 2;
+    left: 0;
+    bottom: 4%;
+    width: 42%;
+    border-radius: 12px;
+    border: 2px solid #fff;
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.1);
+    object-fit: cover;
+    transform: rotate(-4deg);
+}
+
+.ilha-passes-notice__collage--triple .ilha-passes-notice__img--br {
+    position: absolute;
+    z-index: 2;
+    right: 0;
+    bottom: 0;
+    width: 42%;
+    border-radius: 12px;
+    border: 2px solid #fff;
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.1);
+    object-fit: cover;
+    transform: rotate(3deg);
+}
+
+.page-ilha-passes .ilha-passes-pack-footnote {
+    text-align: center;
+    margin-top: var(--space-xl);
+    margin-bottom: 0;
+    font-size: 0.88rem;
+    line-height: 1.5;
+    color: var(--color-text-muted);
+    max-width: 52rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media (max-width: 900px) {
+    .ilha-passes-notice__inner {
+        grid-template-columns: 1fr;
+    }
+
+    .ilha-passes-notice__collage--triple {
+        min-height: 220px;
+    }
+}
+
+/* Manhãs na Ilha — secções topo (calendário, o que inclui, para quem é) */
+.ilha-cal-section .eh-availability-section--ilha .section-title h2 {
+    color: var(--color-primary-dark);
+}
+
+.ilha-includes-section {
+    padding: 2rem;
+}
+
+.ilha-includes-section .section-title {
+    margin-bottom: var(--space-xl);
+}
+
+.ilha-includes-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    max-width: 960px;
+}
+
+.ilha-include-card .service-name {
+    font-weight: 600;
+    font-size: 0.88rem;
+    line-height: 1.35;
+}
+
+/* Para quem é — cartão 2 colunas (imagem + conteúdo) */
+.ilha-audience-section {
+    padding: var(--space-4xl) 0;
+    background: var(--color-bg-alt);
+}
+
+.ilha-audience-container {
+    max-width: 1120px;
+}
+
+.ilha-audience-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: stretch;
+    background: #fff;
+    border-radius: 30px;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+    min-height: 280px;
+}
+
+.ilha-audience-card--no-image {
+    grid-template-columns: 1fr;
+    max-width: 640px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.ilha-audience-card__media {
+    position: relative;
+    min-height: 300px;
+    background: var(--color-bg-alt);
+}
+
+.ilha-audience-card__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.ilha-audience-card__body {
+    padding: clamp(2rem, 4vw, 3.5rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+}
+
+.ilha-audience-badge {
+    display: inline-block;
+    align-self: flex-start;
+    padding: 0.35rem 0.95rem;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    background: rgba(246, 185, 130, 0.4);
+    color: var(--color-secondary);
+    margin-bottom: var(--space-md);
+}
+
+.ilha-audience-card__title {
+    font-family: var(--font-heading);
+    font-size: clamp(1.45rem, 3vw, 2rem);
+    font-weight: 700;
+    color: var(--color-primary-dark);
+    margin: 0 0 var(--space-md);
+    line-height: 1.2;
+}
+
+.ilha-audience-card__lead {
+    margin: 0 0 var(--space-sm);
+    color: var(--color-text-light);
+    font-size: 0.98rem;
+    line-height: 1.65;
+}
+
+.ilha-audience-checklist {
+    list-style: none;
+    margin: var(--space-md) 0 var(--space-lg);
+    padding: 0;
+}
+
+.ilha-audience-checklist li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.55rem;
+    margin-bottom: 0.45rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: var(--color-text);
+}
+
+.ilha-audience-check {
+    color: var(--color-primary);
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 0.12rem;
+}
+
+.ilha-audience-card__footnote {
+    margin: 0 0 var(--space-lg);
+    font-size: 0.92rem;
+    color: var(--color-text-muted);
+    line-height: 1.5;
+}
+
+.ilha-audience-cta {
+    align-self: flex-start;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.8rem 1.85rem;
+    border-radius: 999px;
+    background: var(--color-secondary);
+    color: #fff !important;
+    border: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast), filter var(--transition-fast);
+}
+
+.ilha-audience-cta:hover {
+    filter: brightness(1.06);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(232, 115, 74, 0.35);
+}
+
+.ilha-audience-cta__chev {
+    font-size: 1.15rem;
+    line-height: 1;
+    font-weight: 400;
+}
+
+/* Manhas na Ilha - placeholder temporario "Em breve" */
+.ilha-coming-soon-section {
+    background: var(--color-bg);
+    padding: var(--space-3xl) 0;
+}
+
+.ilha-coming-soon-container {
+    max-width: 1100px;
+}
+
+.ilha-coming-soon-card {
+    display: grid;
+    grid-template-columns: minmax(280px, 1fr) minmax(0, 1fr);
+    gap: var(--space-xl);
+    background: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+}
+
+.ilha-coming-soon-media img {
+    width: 100%;
+    height: 100%;
+    min-height: 320px;
+    object-fit: cover;
+}
+
+.ilha-coming-soon-content {
+    padding: clamp(1.5rem, 3vw, 2.5rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.ilha-coming-soon-badge {
+    align-self: flex-start;
+    background: var(--pastel-orange);
+    color: var(--color-secondary);
+    border-radius: 999px;
+    padding: 0.35rem 0.85rem;
+    font-weight: 700;
+    font-size: 0.8rem;
+    margin-bottom: var(--space-sm);
+}
+
+.ilha-coming-soon-content h2 {
+    margin-bottom: var(--space-md);
+    color: var(--color-primary-dark);
+}
+
+.ilha-coming-soon-content p {
+    color: var(--color-text-light);
+    margin-bottom: var(--space-sm);
+}
+
+.ilha-coming-soon-content .ilha-coming-soon-lead {
+    color: var(--color-text);
+    font-weight: 500;
+}
+
+.ilha-coming-soon-checklist {
+    list-style: none;
+    margin: var(--space-md) 0 var(--space-lg);
+    padding: 0;
+}
+
+.ilha-coming-soon-checklist li {
+    position: relative;
+    padding-left: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--color-text);
+}
+
+.ilha-coming-soon-checklist li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--color-primary);
+    font-weight: 700;
+}
+
+.ilha-coming-soon-cta {
+    align-self: flex-start;
+    background: var(--color-secondary);
+    color: #fff !important;
+    border: none;
+    border-radius: 999px;
+    padding: 0.8rem 1.8rem;
+}
+
+.ilha-coming-soon-cta:hover {
+    filter: brightness(1.05);
+}
+
+@media (max-width: 900px) {
+    .ilha-includes-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .ilha-coming-soon-card {
+        grid-template-columns: 1fr;
+    }
+
+    .ilha-coming-soon-media img {
+        min-height: 240px;
+    }
+
+    .ilha-audience-card:not(.ilha-audience-card--no-image) {
+        grid-template-columns: 1fr;
+    }
+
+    .ilha-audience-card__media {
+        min-height: 220px;
+        max-height: 320px;
+    }
+}
+
+@media (max-width: 480px) {
+    .ilha-includes-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .ilha-audience-card {
+        border-radius: 22px;
+    }
+}
+
+/* ============================================
+   VERAO NA ILHA (ref: benefits + horários + fundo único)
+   ============================================ */
+body.page-template-page-verao-na-ilha-php,
+body.page-verao-na-ilha {
+    background-color: #f8f8f8;
+}
+
+.verao-ilha-fullpage {
+    background-color: #f8f8f8;
+    color: #333;
+    font-family: 'Poppins', var(--font-body, sans-serif);
+}
+
+.verao-ilha-fullpage .hero-section.verao-ilha-page {
+    --verao-ref-teal: #26a69a;
+
+    min-height: auto;
+    display: block;
+    align-items: stretch;
+    padding-bottom: 0;
+    overflow: visible;
+    background: #f8f8f8;
+}
+
+.verao-ilha-fullpage .hero-section.verao-ilha-page .hero-background {
+    display: none;
+}
+
+.verao-ilha-hero-inner {
+    position: relative;
+    z-index: 10;
+    padding-top: var(--header-height);
+    padding-bottom: clamp(28px, 4vw, 48px);
+}
+
+.verao-ilha-page .hero-layout {
+    align-items: center;
+    padding: var(--space-xl) 0 clamp(8px, 2vw, 20px);
+}
+
+.verao-ilha-page .hero-content {
+    padding-top: var(--space-xl);
+    padding-bottom: var(--space-lg);
+}
+
+.verao-ilha-page .hero-badge {
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(38, 166, 154, 0.22);
+    color: var(--verao-ref-teal);
+    font-weight: 700;
+    letter-spacing: 0.02em;
+}
+
+.verao-ilha-page .hero-title {
+    color: var(--verao-ref-teal);
+    font-family: 'Poppins', var(--font-heading, sans-serif);
+}
+
+.verao-ilha-page .hero-subtitle {
+    color: #555;
+    line-height: 1.55;
+    max-width: 34rem;
+}
+
+.verao-ilha-hero-cta.btn-primary {
+    background: var(--verao-ref-teal);
+    border-color: var(--verao-ref-teal);
+    border-radius: 999px;
+    padding-left: 1.75rem;
+    padding-right: 1.75rem;
+    font-weight: 700;
+    gap: 0.35rem;
+}
+
+.verao-ilha-hero-cta.btn-primary::after {
+    content: '\203A';
+    font-size: 1.15em;
+    line-height: 1;
+    opacity: 0.95;
+}
+
+.verao-ilha-hero-cta.btn-primary:hover {
+    filter: brightness(1.06);
+}
+
+.verao-ilha-layout {
+    grid-template-columns: minmax(0, 1fr) minmax(320px, 560px);
+}
+
+.verao-ilha-hero-image {
+    height: clamp(360px, 38vw, 560px);
+    width: min(100%, 560px);
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.verao-ilha-hero-image::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    background:
+        repeating-conic-gradient(from 0deg,
+            rgba(255, 183, 43, 0.95) 0deg 6deg,
+            rgba(255, 183, 43, 0) 6deg 15deg);
+    z-index: 1;
+    animation: veraoSunSpin 36s linear infinite;
+}
+
+.verao-ilha-hero-image .hero-slide {
+    position: relative;
+    z-index: 2;
+    width: calc(100% - 76px);
+    height: calc(100% - 76px);
+    top: auto;
+    left: auto;
+    transform: none;
+    border-radius: 50%;
+    border: 12px solid #fff;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+    animation: none;
+    transition: none;
+    opacity: 1;
+}
+
+.verao-ilha-hero-image .hero-slide img {
+    border-radius: 50%;
+}
+
+@keyframes veraoSunSpin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .verao-ilha-hero-image::before {
+        animation: none;
+    }
+}
+
+.verao-ilha-section-head {
+    text-align: center;
+    margin-bottom: var(--space-xl);
+}
+
+.verao-ilha-section-head .section-title {
+    margin-bottom: var(--space-sm);
+}
+
+.verao-ilha-section-head .section-title h2 {
+    color: #26a69a;
+    font-family: 'Poppins', var(--font-heading, sans-serif);
+    font-size: clamp(1.35rem, 2.5vw, 1.75rem);
+    font-weight: 700;
+    margin: 0;
+}
+
+.verao-ilha-section-head .section-subtitle {
+    margin: 0 auto;
+    max-width: 640px;
+    color: #555;
+}
+
+.verao-ilha-meta-band .verao-ilha-section-head {
+    margin-bottom: var(--space-lg);
+}
+
+/* —— Benefícios (classes exclusivas: benefits-section, benefits-grid, benefit-card) —— */
+/* Não misturar com .price-section — CSS isolado abaixo na secção Preços */
+.verao-ilha-fullpage .benefits-section.verao-ilha-benefits-panel {
+    padding: 60px 0;
+    background: transparent;
+}
+
+.verao-ilha-fullpage .benefits-section.verao-ilha-benefits-panel .container {
+    max-width: 1200px;
+}
+
+.verao-ilha-fullpage .benefits-section.verao-ilha-benefits-panel .benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+@media (min-width: 769px) {
+    .verao-ilha-fullpage .benefits-section.verao-ilha-benefits-panel .benefits-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+.verao-ilha-fullpage .benefits-section.verao-ilha-benefits-panel .benefit-card {
+    background-color: #fefefe;
+    border-radius: 15px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.verao-ilha-fullpage .benefits-section.verao-ilha-benefits-panel .benefit-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+}
+
+.verao-ilha-fullpage .benefits-section.verao-ilha-benefits-panel .icon-wrapper {
+    width: 80px;
+    height: 80px;
+    background-color: #e0f7fa;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+}
+
+.verao-ilha-fullpage .benefits-section.verao-ilha-benefits-panel .icon-wrapper img {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+}
+
+.verao-ilha-fullpage .benefits-section.verao-ilha-benefits-panel .benefit-card h3 {
+    color: #26a69a;
+    font-size: 1.4em;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.verao-ilha-fullpage .benefits-section.verao-ilha-benefits-panel .benefit-card p {
+    font-size: 0.95em;
+    color: #666;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* —— Preços: nota promocional (cartões = .benefit-card em #precos, ver regras no fim do ficheiro) —— */
+.verao-ilha-fullpage #precos.verao-ilha-price-section .price-note {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    width: fit-content;
+    max-width: min(100%, 560px);
+    margin: 36px auto 0;
+    padding: 14px 26px;
+    text-align: center;
+    color: #26a69a;
+    font-weight: 600;
+    font-size: 1.02em;
+    line-height: 1.4;
+    background: linear-gradient(135deg, #fff9e6 0%, #e8f5f3 100%);
+    border-radius: 999px;
+    box-shadow: 0 4px 16px rgba(38, 166, 154, 0.12);
+    border: 1px solid rgba(38, 166, 154, 0.15);
+}
+
+.verao-ilha-fullpage #precos.verao-ilha-price-section .price-note__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    background-color: #fff;
+    border-radius: 50%;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.verao-ilha-fullpage #precos.verao-ilha-price-section .price-note__icon img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+}
+
+.verao-ilha-fullpage #precos.verao-ilha-price-section .price-note__text {
+    font-weight: 600;
+}
+
+/* —— Horários —— */
+body.page-verao-na-ilha .verao-ilha-fullpage .verao-ilha-program .schedules-section.verao-ilha-schedules-panel {
+    padding: 60px 0 40px;
+    background: transparent;
+    text-align: center;
+}
+
+body.page-verao-na-ilha .verao-ilha-fullpage .verao-ilha-program .schedules-section.verao-ilha-schedules-panel h2,
+body.page-verao-na-ilha .verao-ilha-fullpage .verao-ilha-program .schedules-section.verao-ilha-schedules-panel .schedules-section__title {
+    color: #26a69a;
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    margin: 0 0 10px;
+    font-weight: 700;
+}
+
+body.page-verao-na-ilha .verao-ilha-fullpage .verao-ilha-program .schedules-section.verao-ilha-schedules-panel .subtitle {
+    font-size: 1.1em;
+    color: #555;
+    margin: 0 0 40px;
+}
+
+/* —— Horários (cadeia extra para não perder para regras genéricas de .container / grid) —— */
+body.page-verao-na-ilha .verao-ilha-fullpage .verao-ilha-program .schedules-section.verao-ilha-schedules-panel .schedules-grid.verao-ilha-schedules-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 30px;
+    margin-top: 10px;
+    text-align: left;
+    max-width: 100%;
+}
+
+body.page-verao-na-ilha .verao-ilha-fullpage .verao-ilha-schedules-grid .schedule-card {
+    background-color: #fff;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+    position: relative;
+    overflow: hidden;
+    min-height: 100%;
+}
+
+body.page-verao-na-ilha .verao-ilha-fullpage .verao-ilha-schedules-grid .schedule-card.morning .schedule-header img {
+    background-color: #ffe0b2;
+}
+
+body.page-verao-na-ilha .verao-ilha-fullpage .verao-ilha-schedules-grid .schedule-card.afternoon .schedule-header img {
+    background-color: #fff9c4;
+}
+
+body.page-verao-na-ilha .verao-ilha-fullpage .verao-ilha-schedules-grid .schedule-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    gap: 0;
+}
+
+body.page-verao-na-ilha .verao-ilha-fullpage .verao-ilha-schedules-grid .schedule-header img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    padding: 10px;
+    margin-right: 15px;
+    flex-shrink: 0;
+    object-fit: contain;
+    box-sizing: border-box;
+}
+
+body.page-verao-na-ilha .verao-ilha-fullpage .verao-ilha-schedules-grid .schedule-header__text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    min-width: 0;
+}
+
+body.page-verao-na-ilha .verao-ilha-fullpage .verao-ilha-schedules-grid .schedule-header__text h3 {
+    color: #ffb74d;
+    font-size: 1.8em;
+    margin: 0;
+    font-weight: 600;
+    line-height: 1.15;
+}
+
+body.page-verao-na-ilha .verao-ilha-fullpage .verao-ilha-schedules-grid .schedule-header__text p {
+    color: #777;
+    font-size: 1.1em;
+    margin: 6px 0 0;
+    font-weight: 600;
+}
+
+body.page-verao-na-ilha .verao-ilha-fullpage .verao-ilha-schedules-grid .schedule-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    position: relative;
+    z-index: 1;
+}
+
+body.page-verao-na-ilha .verao-ilha-fullpage .verao-ilha-schedules-grid .schedule-list li {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 10px;
+    color: #555;
+    font-size: 1em;
+    line-height: 1.45;
+}
+
+body.page-verao-na-ilha .verao-ilha-fullpage .verao-ilha-schedules-grid .schedule-list li:last-child {
+    margin-bottom: 0;
+}
+
+body.page-verao-na-ilha .verao-ilha-fullpage .verao-ilha-schedules-grid .check-icon {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    background-color: #80cbc4;
+    border-radius: 50%;
+    margin-right: 10px;
+    margin-top: 2px;
+    position: relative;
+}
+
+body.page-verao-na-ilha .verao-ilha-fullpage .verao-ilha-schedules-grid .check-icon::before {
+    content: '✔';
+    color: #fff;
+    font-size: 12px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    line-height: 1;
+}
+
+body.page-verao-na-ilha .verao-ilha-fullpage .verao-ilha-schedules-grid .check-icon--morning {
+    background-color: #80cbc4;
+}
+
+body.page-verao-na-ilha .verao-ilha-fullpage .verao-ilha-schedules-grid .check-icon--afternoon {
+    background-color: #aed581;
+}
+
+body.page-verao-na-ilha .verao-ilha-fullpage .verao-ilha-schedules-grid .illustration {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 120px;
+    height: auto;
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+body.page-verao-na-ilha .verao-ilha-fullpage .verao-ilha-program .schedules-section.verao-ilha-schedules-panel .info-text {
+    margin-top: 40px;
+    font-size: 0.9em;
+    color: #777;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+}
+
+body.page-verao-na-ilha .verao-ilha-fullpage .verao-ilha-program .schedules-section.verao-ilha-schedules-panel .info-icon {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    border: 1px solid #777;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 18px;
+    font-size: 14px;
+    margin-right: 8px;
+    color: #777;
+    position: relative;
+}
+
+body.page-verao-na-ilha .verao-ilha-fullpage .verao-ilha-program .schedules-section.verao-ilha-schedules-panel .info-icon::before {
+    content: 'i';
+    font-style: italic;
+    font-family: Georgia, serif;
+    font-size: 12px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -52%);
+}
+
+.verao-ilha-program {
+    padding: 0 0 var(--space-4xl);
+    background: transparent;
+}
+
+.verao-ilha-program > .container > .verao-ilha-section-head .section-title h2 {
+    color: #26a69a;
+}
+
+.verao-ilha-program .container {
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+    border-radius: 0;
+    padding: 0;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.verao-ilha-meta-band.ilha-includes-section {
+    padding: 2rem 0;
+    background: transparent;
+}
+
+/* Mesmo padrão que Manhãs na Ilha — cartões brancos sobre fundo único */
+@media (min-width: 901px) {
+    .verao-ilha-program .services-grid.ilha-includes-grid.verao-ilha-includes-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+.verao-ilha-program .ilha-include-card {
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+}
+
+.verao-ilha-cta-area {
+    margin-top: var(--space-xl);
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: center;
+    justify-items: center;
+    gap: var(--space-lg);
+}
+
+.verao-ilha-cta-btn {
+    width: min(100%, 420px);
+    justify-content: center;
+    font-weight: 700;
+    min-height: 54px;
+    border-radius: 999px;
+    background: #26a69a;
+    border-color: #26a69a;
+    box-shadow: 0 8px 18px rgba(38, 166, 154, 0.25);
+}
+
+.verao-ilha-cta-btn:hover {
+    filter: brightness(1.05);
+}
+
+/* FAQ — acordeão (escopo body para ganhar a CSS global / listas legadas no editor) */
+body.page-verao-na-ilha .verao-ilha-faq-section--accordion {
+    padding: clamp(40px, 6vw, 64px) 0 clamp(48px, 7vw, 80px);
+    background: transparent;
+}
+
+body.page-verao-na-ilha .verao-ilha-faq-section--accordion .container {
+    max-width: 1200px;
+}
+
+/* Listas coladas no editor dentro desta secção (FAQ antiga em HTML) — ocultar; use os campos do tema */
+body.page-verao-na-ilha .verao-ilha-faq-section--accordion .container > ul,
+body.page-verao-na-ilha .verao-ilha-faq-section--accordion .container > ol {
+    display: none;
+}
+
+body.page-verao-na-ilha .verao-ilha-faq-section__title {
+    color: #26a69a;
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    margin: 0 0 10px;
+    font-weight: 700;
+    text-align: center;
+}
+
+body.page-verao-na-ilha .verao-ilha-faq-section__subtitle {
+    font-size: 1.1em;
+    color: #555;
+    margin: 0 auto 36px;
+    max-width: 640px;
+    text-align: center;
+    line-height: 1.55;
+}
+
+body.page-verao-na-ilha .verao-ilha-faq-list {
+    max-width: 720px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    list-style: none;
+    padding: 0;
+}
+
+body.page-verao-na-ilha .verao-ilha-faq-item {
+    display: block;
+    background-color: #fefefe;
+    border-radius: 15px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+    border: 1px solid rgba(0, 0, 0, 0.04);
+    overflow: hidden;
+    transition: box-shadow 0.25s ease;
+}
+
+body.page-verao-na-ilha .verao-ilha-faq-item:hover {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.07);
+}
+
+body.page-verao-na-ilha .verao-ilha-faq-item[open] {
+    box-shadow: 0 6px 20px rgba(38, 166, 154, 0.12);
+    border-color: rgba(38, 166, 154, 0.25);
+}
+
+body.page-verao-na-ilha .verao-ilha-faq-item__summary {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 18px 20px;
+    cursor: pointer;
+    font-weight: 600;
+    color: #26a69a;
+    font-size: 1.02rem;
+    line-height: 1.35;
+}
+
+body.page-verao-na-ilha .verao-ilha-faq-item__summary::-webkit-details-marker {
+    display: none;
+}
+
+body.page-verao-na-ilha .verao-ilha-faq-item__q {
+    flex: 1;
+    min-width: 0;
+    text-align: left;
+}
+
+body.page-verao-na-ilha .verao-ilha-faq-item__toggle {
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: #e0f7fa;
+    position: relative;
+}
+
+body.page-verao-na-ilha .verao-ilha-faq-item__toggle::before {
+    content: '+';
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: #26a69a;
+    line-height: 1;
+    transition: transform 0.25s ease;
+}
+
+body.page-verao-na-ilha .verao-ilha-faq-item[open] .verao-ilha-faq-item__toggle::before {
+    content: '\2212';
+    transform: rotate(0deg);
+}
+
+body.page-verao-na-ilha .verao-ilha-faq-item__body {
+    padding: 0 20px 18px;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+body.page-verao-na-ilha .verao-ilha-faq-item__a {
+    margin: 14px 0 0;
+    font-size: 0.95em;
+    color: #666;
+    line-height: 1.65;
+}
+
+@media (max-width: 1024px) {
+    .verao-ilha-cta-area {
+        grid-template-columns: 1fr;
+        justify-items: center;
+    }
+}
+
+@media (max-width: 900px) {
+    .verao-ilha-layout {
+        grid-template-columns: 1fr;
+    }
+
+    body.page-verao-na-ilha .verao-ilha-fullpage .verao-ilha-program .schedules-section.verao-ilha-schedules-panel .schedules-grid.verao-ilha-schedules-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Benefícios: responsive (só .verao-ilha-benefits-panel) */
+@media (max-width: 768px) {
+    .verao-ilha-fullpage .benefits-section.verao-ilha-benefits-panel .benefits-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 520px) {
+    .verao-ilha-fullpage .benefits-section.verao-ilha-benefits-panel .benefits-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Preços: nota em mobile */
+@media (max-width: 520px) {
+    .verao-ilha-fullpage #precos.verao-ilha-price-section .price-note {
+        flex-direction: column;
+        gap: 8px;
+        padding: 16px 20px;
+        border-radius: 16px;
+    }
+}
+
+@media (max-width: 767px) {
+    .verao-ilha-hero-content {
+        text-align: center;
+    }
+
+    .verao-ilha-hero-cta.btn-primary {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .verao-ilha-cta-area {
+        gap: var(--space-md);
+    }
+
+    .verao-ilha-hero-image {
+        height: min(72vw, 430px);
+    }
+
+    .verao-ilha-hero-image .hero-slide {
+        width: calc(100% - 52px);
+        height: calc(100% - 52px);
+        border-width: 8px;
+    }
+
+    body.page-verao-na-ilha .verao-ilha-fullpage .verao-ilha-schedules-grid .schedule-card .illustration {
+        width: 80px;
+    }
+}
+
+/* =============================================================================
+   VERÃO NA ILHA — PREÇOS (#precos): .price-grid + .price-card
+   ============================================================================= */
+.verao-ilha-fullpage #precos.verao-ilha-price-section {
+    padding: 60px 0;
+    background: transparent !important;
+}
+
+.verao-ilha-fullpage #precos.verao-ilha-price-section .container {
+    max-width: 1200px;
+}
+
+.verao-ilha-fullpage #precos .price-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 30px;
+    width: 100%;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.verao-ilha-fullpage #precos .price-card {
+    background-color: #fefefe;
+    border-radius: 15px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.verao-ilha-fullpage #precos .price-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+}
+
+.verao-ilha-fullpage #precos .price-card__icon {
+    width: 80px;
+    height: 80px;
+    background-color: #e0f7fa;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+}
+
+.verao-ilha-fullpage #precos .price-card__icon img {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+}
+
+.verao-ilha-fullpage #precos .price-card h3 {
+    color: #26a69a;
+    font-size: 1.4em;
+    margin: 0 0 10px;
+    font-weight: 600;
+}
+
+.verao-ilha-fullpage #precos .price-card .price-card__amount {
+    color: #26a69a;
+    font-size: 1.75em;
+    font-weight: 700;
+    margin: 0 0 10px;
+    line-height: 1.2;
+}
+
+.verao-ilha-fullpage #precos .price-card .price-card__badge {
+    font-size: 0.95em;
+    color: #666;
+    margin: 0;
+    line-height: 1.6;
+}
+
+@media (min-width: 901px) {
+    .verao-ilha-fullpage #precos .price-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 900px) {
+    .verao-ilha-fullpage #precos .price-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 520px) {
+    .verao-ilha-fullpage #precos .price-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
